@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Funcionalidades — Minha Confeitaria App</title>
+<link rel="icon" href="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/logo-mini.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#FFF9F2;color:#1C0A00;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}a{text-decoration:none;color:inherit}
+:root{
+  --cream:#FFF9F2;--cream2:#FFF1E3;--dark:#140700;--dark2:#271000;
+  --purple:#7C3AED;--pink:#E91E8C;--yellow:#F5C500;--green:#16A34A;
+  --muted:#7A5C48;--border:#F0DCC8;
+  --grad:linear-gradient(135deg,#7C3AED,#E91E8C);
+  --shadow:0 4px 32px rgba(28,10,0,.1);--shadowlg:0 12px 64px rgba(28,10,0,.18);--r:16px;
+}
+h1,h2{font-family:'Playfair Display',Georgia,serif;line-height:1.12}
+h1{font-size:clamp(2.4rem,4vw,3.8rem);font-weight:900}
+h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700}
+h3{font-size:1.35rem;font-weight:700;line-height:1.3}
+p{color:var(--muted);font-size:1rem;line-height:1.75}
+.container{max-width:1200px;margin:0 auto;padding:0 28px}
+.tag{display:inline-block;padding:5px 14px;border-radius:50px;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;border:none;transition:all .2s;text-decoration:none;white-space:nowrap}
+.btn-grad{background:var(--grad);color:#fff;box-shadow:0 4px 24px rgba(124,58,237,.32)}
+.btn-grad:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(124,58,237,.44)}
+.btn-outline{background:transparent;color:var(--dark);border:2px solid var(--border)}
+.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
+.btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.35)}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.btn-lg{padding:17px 34px;font-size:1.05rem}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:all .3s;padding:18px 0}
+nav.sc{background:rgba(255,249,242,.93);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:11px 0;box-shadow:0 1px 24px rgba(28,10,0,.07)}
+.nav-in{display:flex;align-items:center;max-width:1200px;margin:0 auto;padding:0 28px}
+.nav-logo img{height:50px}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;margin-left:auto}
+.nav-links a{font-weight:600;font-size:.92rem;color:rgba(255,255,255,.88);transition:color .2s}
+nav.sc .nav-links a{color:var(--dark)}
+.nav-links a:hover,.nav-links a.cur{color:var(--pink)}
+nav.sc .nav-links a.cur{color:var(--purple)}
+.nav-ctas{display:flex;gap:10px;margin-left:24px}
+a.nav-login{padding:8px 18px;border-radius:50px;font-weight:700;font-size:.88rem;color:#fff;border:1.5px solid rgba(255,255,255,.4);transition:all .2s}
+nav.sc a.nav-login{color:var(--dark);border-color:var(--border)}
+a.nav-cta{padding:8px 20px;border-radius:50px;background:var(--grad);font-weight:700;font-size:.88rem;color:#fff;box-shadow:0 4px 14px rgba(124,58,237,.32);transition:all .2s}
+a.nav-cta:hover{transform:translateY(-1px)}
+/* PAGE HERO */
+.page-hero{background:var(--dark);padding:140px 0 80px;position:relative;overflow:hidden;text-align:center}
+.page-hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(124,58,237,.28) 0%,transparent 70%);pointer-events:none}
+.page-hero h1{color:#fff;margin-bottom:16px}
+.page-hero p{color:rgba(255,255,255,.65);max-width:540px;margin:0 auto 28px;font-size:1.1rem}
+.hero-breadcrumb{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:20px;font-size:.85rem;color:rgba(255,255,255,.45)}
+.hero-breadcrumb a{color:rgba(255,255,255,.45);transition:color .2s}
+.hero-breadcrumb a:hover{color:var(--yellow)}
+/* FEAT NAV (sticky pill nav) */
+.feat-nav{background:#fff;border-bottom:1.5px solid var(--border);position:sticky;top:68px;z-index:50;padding:0}
+.feat-nav-in{display:flex;align-items:center;justify-content: center;gap:0;overflow-x:auto;max-width:1200px;margin:0 auto;padding:0 28px;scrollbar-width:none}
+.feat-nav-in::-webkit-scrollbar{display:none}
+.feat-link{display:flex;align-items:center;gap:7px;padding:14px 20px;font-size:.88rem;font-weight:700;color:var(--muted);border-bottom:2.5px solid transparent;white-space:nowrap;transition:all .2s;cursor:pointer}
+.feat-link:hover{color:var(--purple);border-bottom-color:rgba(124,58,237,.3)}
+.feat-link.on{color:var(--purple);border-bottom-color:var(--purple)}
+/* FEATURE ROWS */
+.feat-section{padding:88px 0;border-bottom:1.5px solid var(--border)}
+.feat-section:last-of-type{border-bottom:none}
+.feat-row{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.feat-row.flip .feat-txt{order:2}
+.feat-row.flip .feat-img{order:1}
+.feat-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 13px;border-radius:50px;font-size:.76rem;font-weight:700;margin-bottom:14px}
+.fb-free{background:#DCFCE7;color:var(--green)}
+.fb-pro{background:#FCE7F3;color:var(--pink)}
+.feat-txt h2{margin-bottom:12px}
+.feat-txt p{margin-bottom:14px}
+.feat-benefits{list-style:none;display:flex;flex-direction:column;gap:10px;margin:18px 0 26px}
+.feat-benefits li{display:flex;align-items:flex-start;gap:10px;font-size:.93rem}
+.fb-check{width:22px;height:22px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;margin-top:1px}
+.feat-img-wrap{border-radius:14px;overflow:hidden;box-shadow:var(--shadowlg);border:1.5px solid var(--border)}
+.feat-img-wrap img{width:100%;display:block}
+/* PRO CALLOUT */
+.pro-callout{background:var(--dark);border-radius:var(--r);padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;margin:0 0 0}
+.pro-callout h3{color:#fff;font-size:1.4rem;margin-bottom:8px}
+.pro-callout p{color:rgba(255,255,255,.6);font-size:.95rem;margin:0}
+/* CTA BAND */
+.cta-band{background:var(--dark);padding:80px 0;position:relative;overflow:hidden;text-align:center}
+.cta-band-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(124,58,237,.3) 0%,transparent 70%);pointer-events:none}
+.cta-band h2{color:#fff;margin-bottom:12px}
+.cta-band p{color:rgba(255,255,255,.62);max-width:440px;margin:0 auto 28px}
+.cta-band .trust-row{justify-content:center}
+.trust-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.trust-it{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.65)}
+.trust-dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
+/* FOOTER */
+footer{background:var(--dark2);color:rgba(255,255,255,.45);padding:36px 0}
+.foot-in{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px}
+.foot-logo img{height:42px;opacity:.75}
+.foot-links{display:flex;gap:24px;flex-wrap:wrap}
+.foot-links a{font-size:.82rem;transition:color .2s}
+.foot-links a:hover{color:#fff}
+.foot-copy{font-size:.8rem}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:all .6s ease}
+.reveal.vis{opacity:1;transform:none}
+@media(max-width:900px){
+  .feat-row{grid-template-columns:1fr}
+  .feat-row.flip .feat-txt,.feat-row.flip .feat-img{order:unset}
+  .nav-links{display:none}
+  .pro-callout{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a href="/" class="nav-logo"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/logo.png" alt="Minha Confeitaria App"></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/funcionalidades" class="cur">Funcionalidades</a></li>
+      <li><a href="/precos">Preços</a></li>
+      <li><a href="/contato">Contato</a></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="https://app.minhaconfeitaria.com" class="nav-login">Entrar</a>
+      <a href="https://app.minhaconfeitaria.com/register" class="nav-cta">Testar Grátis</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-glow"></div>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="hero-breadcrumb"><a href="/">Home</a> <span>/</span> <span>Funcionalidades</span></div>
+    <div class="tag" style="background:rgba(245,197,0,.15);color:var(--yellow)">Funcionalidades</div>
+    <h1>Tudo que a sua confeitaria<br>precisa para crescer</h1>
+    <p>Conheça cada funcionalidade da plataforma Minha Confeitaria App — do cadastro de ingredientes ao relatório de lucratividade.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href="https://app.minhaconfeitaria.com/register" class="btn btn-grad btn-lg">Testar Grátis por 14 dias →</a>
+      <a href="/precos" class="btn btn-ghost btn-lg">Ver preços</a>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY FEATURE NAV -->
+<nav class="feat-nav" id="featNav">
+  <div class="feat-nav-in">
+    <a class="feat-link on" href="#receitas">📋 Receitas</a>
+    <a class="feat-link" href="#ingredientes">🥚 Ingredientes</a>
+    <a class="feat-link" href="#orcamentos">📄 Orçamentos</a>
+    <a class="feat-link" href="#pedidos">📦 Pedidos</a>
+    <a class="feat-link" href="#clientes">👥 Clientes</a>
+    <a class="feat-link" href="#fluxo">💳 Fluxo de Caixa</a>
+    <a class="feat-link" href="#relatorios">📊 Relatórios</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- 1. RECEITAS -->
+<section class="feat-section" id="receitas">
+  <div class="feat-row reveal">
+    <div class="feat-txt">
+      <div class="feat-badge fb-free">✓ Disponível no Plano Grátis</div>
+      <h2>Registre todas as suas receitas</h2>
+      <p>Você não precisa mais de cadernos e mais cadernos de receitas. Facilite: tenha todas as suas receitas organizadas na palma da sua mão, com custo calculado automaticamente.</p>
+      <ul class="feat-benefits">
+        <li><div class="fb-check">✓</div><span><strong>Custo por unidade automático</strong> — vincule ingredientes e defina o rendimento; o sistema calcula tudo</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Categorias personalizadas</strong> — organize por tipo de produto, sabor ou ocasião</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Valor de venda sugerido</strong> — defina sua margem e veja o preço de venda ideal</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Copiar receita</strong> — duplique uma receita existente para criar variações rapidamente</span></li>
+      </ul>
+      <a href="https://app.minhaconfeitaria.com/register" class="btn btn-grad">Começar grátis →</a>
+    </div>
+    <div class="feat-img">
+      <div class="feat-img-wrap"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/MC-RECEITAS.png" alt="Tela de Receitas"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. INGREDIENTES -->
+<section class="feat-section" id="ingredientes">
+  <div class="feat-row flip reveal">
+    <div class="feat-img">
+      <div class="feat-img-wrap"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/MC-INGREDIENTES.png" alt="Tela de Ingredientes"></div>
+    </div>
+    <div class="feat-txt">
+      <div class="feat-badge fb-free">✓ Disponível no Plano Grátis</div>
+      <h2>Ingredientes com custo inteligente</h2>
+      <p>Ao alterar o preço de um ingrediente, os custos de <strong>todas as suas receitas</strong> são ajustados automaticamente — revelando o lucro efetivo de cada pedido em tempo real.</p>
+      <ul class="feat-benefits">
+        <li><div class="fb-check">✓</div><span><strong>Atualização em cascata</strong> — mude o preço da manteiga e todos os custos se recalculam na hora</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Unidades de medida flexíveis</strong> — kg, g, ml, litros, unidades e muito mais</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Importação em massa</strong> — importe uma lista de ingredientes de uma vez sem redigitar</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Histórico de preços</strong> — acompanhe a evolução do custo dos seus insumos ao longo do tempo</span></li>
+      </ul>
+      <a href="https://app.minhaconfeitaria.com/register" class="btn btn-grad">Começar grátis →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 3. ORÇAMENTOS -->
+<section class="feat-section" id="orcamentos">
+  <div class="feat-row reveal">
+    <div class="feat-txt">
+      <div class="feat-badge fb-free">✓ Disponível no Plano Grátis</div>
+      <h2>Orçamento profissional em segundos</h2>
+      <p>Selecione as receitas e as quantidades solicitadas — o seu orçamento com PDF profissional está pronto para enviar direto pelo WhatsApp do cliente. Do sistema para o cliente em menos de 1 minuto.</p>
+      <ul class="feat-benefits">
+        <li><div class="fb-check">✓</div><span><strong>PDF com a identidade da sua empresa</strong> — nome, contato e logotipo no documento</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Envio direto pelo WhatsApp</strong> — compartilhe o PDF com um toque, sem sair do sistema</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Taxa adicional e desconto</strong> — aplique ajustes financeiros diretamente no orçamento</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Data de validade</strong> — defina por quanto tempo o orçamento é válido</span></li>
+      </ul>
+      <a href="https://app.minhaconfeitaria.com/register" class="btn btn-grad">Começar grátis →</a>
+    </div>
+    <div class="feat-img">
+      <div class="feat-img-wrap"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/MC-GERARORCAMENTO.png" alt="Tela de Orçamento"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRO CALLOUT -->
+<div class="pro-callout reveal" style="margin:20px 0">
+  <div>
+    <h3>As funcionalidades abaixo são exclusivas do Plano PRO</h3>
+    <p>Gerencie pedidos, clientes, caixa e relatórios por apenas R$&nbsp;19,90/mês — com 14 dias de teste grátis.</p>
+  </div>
+  <a href="/precos" class="btn btn-grad btn-lg" style="flex-shrink:0">Ver planos →</a>
+</div>
+
+<!-- 4. PEDIDOS -->
+<section class="feat-section" id="pedidos">
+  <div class="feat-row flip reveal">
+    <div class="feat-img">
+      <div class="feat-img-wrap"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/MC-MEUSPEDIDOS.png" alt="Tela de Pedidos"></div>
+    </div>
+    <div class="feat-txt">
+      <div class="feat-badge fb-pro">★ Exclusivo PRO</div>
+      <h2>Controle total dos seus pedidos</h2>
+      <p>Organização é tão importante quanto a qualidade do seu produto. Esquecer um pedido ou não acabar desapontando uma cliente pode destruir a sua reputação. O sistema cuida disso por você.</p>
+      <ul class="feat-benefits">
+        <li><div class="fb-check">✓</div><span><strong>Status por pedido</strong> — Em produção, Pronto, Entregue, Cancelado</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Pagamentos parciais</strong> — registre entradas e acompanhe o saldo a receber</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Data e hora de entrega</strong> — nunca mais perca um prazo importante</span></li>
+        <li><div class="fb-check">✓</div><span><strong>PDF do pedido</strong> — comprovante profissional gerado automaticamente</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Envio pelo WhatsApp</strong> — compartilhe o comprovante com o cliente em 1 clique</span></li>
+      </ul>
+      <a href="/precos" class="btn btn-grad">Ver plano PRO →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 5. CLIENTES -->
+<section class="feat-section" id="clientes">
+  <div class="feat-row reveal">
+    <div class="feat-txt">
+      <div class="feat-badge fb-pro">★ Exclusivo PRO</div>
+      <h2>Todos os seus clientes a um clique</h2>
+      <p>Mantenha um cadastro completo de todos os seus clientes com o histórico de todos os pedidos. Saiba quem compra mais, com qual frequência e qual o ticket médio de cada um.</p>
+      <ul class="feat-benefits">
+        <li><div class="fb-check">✓</div><span><strong>Histórico completo de pedidos</strong> — veja todos os pedidos de cada cliente em uma tela</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Dados de contato</strong> — nome, e-mail, telefone e cidade</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Importação em massa</strong> — importe uma lista de clientes de uma vez</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Contato via WhatsApp</strong> — acesse o WhatsApp do cliente diretamente pelo sistema</span></li>
+      </ul>
+      <a href="/precos" class="btn btn-grad">Ver plano PRO →</a>
+    </div>
+    <div class="feat-img">
+      <div class="feat-img-wrap"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/MC-CLIENTES.png" alt="Tela de Clientes"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. FLUXO DE CAIXA -->
+<section class="feat-section" id="fluxo">
+  <div class="feat-row flip reveal">
+    <div class="feat-img">
+      <div class="feat-img-wrap"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/MC-FLUXO.png" alt="Fluxo de Caixa"></div>
+    </div>
+    <div class="feat-txt">
+      <div class="feat-badge fb-pro">★ Exclusivo PRO</div>
+      <h2>Fluxo de Caixa automático</h2>
+      <p>Ao finalizar um pedido o sistema gera automaticamente o movimento no seu fluxo de caixa. O dinheiro do negócio, organizado sem nenhum esforço extra da sua parte.</p>
+      <ul class="feat-benefits">
+        <li><div class="fb-check">✓</div><span><strong>Lançamento automático ao fechar pedido</strong> — sem precisar fazer nada manualmente</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Lançamento manual</strong> — registre despesas e entradas avulsas quando precisar</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Visualização por período</strong> — mês atual ou meses anteriores com um clique</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Separação por tipo</strong> — entradas e saídas claramente identificadas</span></li>
+      </ul>
+      <a href="/precos" class="btn btn-grad">Ver plano PRO →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 7. RELATÓRIOS -->
+<section class="feat-section" id="relatorios">
+  <div class="feat-row reveal">
+    <div class="feat-txt">
+      <div class="feat-badge fb-pro">★ Exclusivo PRO</div>
+      <h2>Relatórios para crescer com inteligência</h2>
+      <p>Depois da organização, vem o planejamento. Planejar utilizando dados reais é muito mais produtivo. Veja o histórico de pedidos, custos, lucro e tendências do seu negócio.</p>
+      <ul class="feat-benefits">
+        <li><div class="fb-check">✓</div><span><strong>Relatório de pedidos</strong> — análise detalhada por data, valor e lucratividade</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Custo vs. lucro</strong> — veja quanto você realmente ganhou em cada período</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Exportar para arquivo</strong> — baixe os dados para análise externa</span></li>
+        <li><div class="fb-check">✓</div><span><strong>Filtros por período</strong> — analise qualquer intervalo de datas</span></li>
+      </ul>
+      <a href="/precos" class="btn btn-grad">Ver plano PRO →</a>
+    </div>
+    <div class="feat-img">
+      <div class="feat-img-wrap"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/MC-RELATORIO.png" alt="Relatórios"></div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-band-glow"></div>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="tag" style="background:rgba(245,197,0,.15);color:var(--yellow)">Pronto para começar?</div>
+    <h2 style="color:#fff;margin-bottom:12px">Gerir o seu negócio<br>não precisa ser difícil.</h2>
+    <p>Comece de graça hoje. O plano gratuito já inclui receitas, ingredientes e orçamentos — sem cartão de crédito.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:24px">
+      <a href="https://app.minhaconfeitaria.com/register" class="btn btn-grad btn-lg">Testar Grátis por 14 dias →</a>
+      <a href="/precos" class="btn btn-ghost btn-lg">Ver preços</a>
+    </div>
+    <div class="trust-row" style="justify-content:center">
+      <div class="trust-it"><span class="trust-dot"></span>Sem cartão de crédito</div>
+      <div class="trust-it"><span class="trust-dot"></span>Plano gratuito permanente</div>
+      <div class="trust-it"><span class="trust-dot"></span>Garantia de 7 dias</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="foot-in">
+      <div class="foot-logo"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/logo.png" alt="Minha Confeitaria App"></div>
+      <div class="foot-links">
+        <a href="https://minhaconfeitaria.com.br">Home</a>
+        <a href="/funcionalidades">Funcionalidades</a>
+        <a href="/precos">Preços</a>
+        <a href="/politica-de-privacidade">Política de Privacidade</a>
+        <a href="termos-de-uso">Termos de Uso</a>
+      </div>
+      <div class="foot-copy">Copyright © 2026 Minha Confeitaria · Todos os Direitos Reservados</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('sc',scrollY>40));
+
+// FEAT NAV highlight on scroll
+const sections=['receitas','ingredientes','orcamentos','pedidos','clientes','fluxo','relatorios'];
+const links=document.querySelectorAll('.feat-link');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.remove('on'));
+      const lnk=document.querySelector(`.feat-link[href="#${e.target.id}"]`);
+      if(lnk)lnk.classList.add('on');
+    }
+  });
+},{threshold:.3,rootMargin:'-80px 0px -60% 0px'});
+sections.forEach(id=>{const el=document.getElementById(id);if(el)obs.observe(el);});
+
+// REVEAL
+const rv=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');rv.unobserve(e.target);}});
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>rv.observe(el));
+</script>
+</body>
+</html>

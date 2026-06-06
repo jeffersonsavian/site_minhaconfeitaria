@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preços — Minha Confeitaria App</title>
+<link rel="icon" href="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/logo-mini.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#FFF9F2;color:#1C0A00;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}a{text-decoration:none;color:inherit}
+:root{
+  --cream:#FFF9F2;--cream2:#FFF1E3;--dark:#140700;--dark2:#271000;
+  --purple:#7C3AED;--pink:#E91E8C;--yellow:#F5C500;--green:#16A34A;--coral:#FF6B35;
+  --muted:#7A5C48;--border:#F0DCC8;
+  --grad:linear-gradient(135deg,#7C3AED,#E91E8C);
+  --shadow:0 4px 32px rgba(28,10,0,.1);--shadowlg:0 12px 64px rgba(28,10,0,.18);--r:16px;
+}
+h1,h2{font-family:'Playfair Display',Georgia,serif;line-height:1.12}
+h1{font-size:clamp(2.4rem,4vw,3.8rem);font-weight:900}
+h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700}
+h3{font-size:1.2rem;font-weight:700;line-height:1.3}
+p{color:var(--muted);font-size:1rem;line-height:1.75}
+.container{max-width:1200px;margin:0 auto;padding:0 28px}
+.section{padding:88px 0}
+.s-tint{background:var(--cream2)}
+.s-dark{background:var(--dark);color:#fff}
+.s-dark p{color:rgba(255,255,255,.62)}
+.tag{display:inline-block;padding:5px 14px;border-radius:50px;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;border:none;transition:all .2s;text-decoration:none;white-space:nowrap}
+.btn-grad{background:var(--grad);color:#fff;box-shadow:0 4px 24px rgba(124,58,237,.32)}
+.btn-grad:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(124,58,237,.44)}
+.btn-outline{background:transparent;color:var(--dark);border:2px solid var(--border)}
+.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
+.btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.35)}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.btn-lg{padding:17px 34px;font-size:1.05rem}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:all .3s;padding:18px 0}
+nav.sc{background:rgba(255,249,242,.93);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:11px 0;box-shadow:0 1px 24px rgba(28,10,0,.07)}
+.nav-in{display:flex;align-items:center;max-width:1200px;margin:0 auto;padding:0 28px}
+.nav-logo img{height:50px}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;margin-left:auto}
+.nav-links a{font-weight:600;font-size:.92rem;color:rgba(255,255,255,.88);transition:color .2s}
+nav.sc .nav-links a{color:var(--dark)}
+.nav-links a:hover,.nav-links a.cur{color:var(--pink)}
+nav.sc .nav-links a.cur{color:var(--purple)}
+.nav-ctas{display:flex;gap:10px;margin-left:24px}
+a.nav-login{padding:8px 18px;border-radius:50px;font-weight:700;font-size:.88rem;color:#fff;border:1.5px solid rgba(255,255,255,.4);transition:all .2s}
+nav.sc a.nav-login{color:var(--dark);border-color:var(--border)}
+a.nav-cta{padding:8px 20px;border-radius:50px;background:var(--grad);font-weight:700;font-size:.88rem;color:#fff;box-shadow:0 4px 14px rgba(124,58,237,.32);transition:all .2s}
+a.nav-cta:hover{transform:translateY(-1px)}
+/* PAGE HERO */
+.page-hero{background:var(--dark);padding:140px 0 80px;position:relative;overflow:hidden;text-align:center}
+.page-hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(124,58,237,.28) 0%,transparent 70%);pointer-events:none}
+.page-hero h1{color:#fff;margin-bottom:14px}
+.page-hero p{color:rgba(255,255,255,.65);max-width:520px;margin:0 auto 26px;font-size:1.1rem}
+.hero-breadcrumb{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:18px;font-size:.85rem;color:rgba(255,255,255,.45)}
+.hero-breadcrumb a{color:rgba(255,255,255,.45);transition:color .2s}
+.hero-breadcrumb a:hover{color:var(--yellow)}
+/* PRICING */
+.sec-head{text-align:center;margin-bottom:52px}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+.plan{background:#fff;border-radius:20px;padding:34px 26px;border:1.5px solid var(--border);position:relative;transition:all .25s}
+.plan:hover{transform:translateY(-4px);box-shadow:var(--shadowlg)}
+.plan.feat{background:var(--dark);border-color:var(--purple);box-shadow:0 0 0 3px var(--purple),var(--shadowlg);transform:scale(1.03)}
+.plan.feat:hover{transform:scale(1.03) translateY(-4px)}
+.plan-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;padding:4px 15px;border-radius:50px;font-size:.76rem;font-weight:800;white-space:nowrap}
+.plan-cat{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:5px}
+.feat .plan-cat{color:rgba(255,255,255,.55)}
+.plan-sub{font-size:.95rem;font-weight:700;margin-bottom:18px}
+.feat .plan-sub{color:#fff}
+.plan-price-row{display:flex;align-items:flex-start;gap:3px;margin-bottom:4px}
+.p-cur{font-size:1.1rem;font-weight:700;line-height:2.1}
+.feat .p-cur{color:#fff}
+.p-amt{font-family:'Playfair Display',serif;font-size:3.8rem;font-weight:900;line-height:1}
+.feat .p-amt{color:#fff}
+.p-free{font-family:'Playfair Display',serif;font-size:3.4rem;font-weight:900;color:var(--green)}
+.p-dec{font-size:1.15rem;font-weight:700;line-height:2.6}
+.plan-per{font-size:.82rem;color:var(--muted);margin-bottom:22px}
+.feat .plan-per{color:rgba(255,255,255,.48)}
+.plan-div{height:1px;background:var(--border);margin:18px 0}
+.feat .plan-div{background:rgba(255,255,255,.13)}
+.plan-feats{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:26px}
+.plan-feats li{display:flex;align-items:center;gap:9px;font-size:.88rem;font-weight:500}
+.feat .plan-feats li{color:rgba(255,255,255,.83)}
+.ck-y{color:var(--green)}
+.ck-n{color:#ccc}
+.plan-btn{width:100%;text-align:center;display:block}
+/* GUARANTEE STRIP */
+.guarantee-strip{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin-top:40px;padding:28px;background:#fff;border-radius:var(--r);border:1.5px solid var(--border)}
+.g-item{display:flex;align-items:center;gap:12px}
+.g-icon{font-size:1.8rem}
+.g-item strong{display:block;font-size:.9rem;font-weight:700}
+.g-item span{font-size:.8rem;color:var(--muted)}
+/* COMPARISON TABLE */
+.cmp-wrap{margin-top:60px}
+.cmp-wrap>h3{text-align:center;margin-bottom:24px;font-size:1.2rem}
+.cmp-tbl{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);border:1.5px solid var(--border)}
+.cmp-tbl th,.cmp-tbl td{padding:14px 20px;text-align:center;font-size:.88rem;border-bottom:1px solid var(--border)}
+.cmp-tbl thead{background:var(--dark)}
+.cmp-tbl th{font-weight:800;font-size:.82rem;color:rgba(255,255,255,.7)}
+.cmp-tbl th:first-child{color:rgba(255,255,255,.5)}
+.cmp-tbl th.hl{color:#fff}
+.cmp-tbl th:first-child,.cmp-tbl td:first-child{text-align:left;color:var(--muted)}
+.cmp-tbl .ours{background:rgba(124,58,237,.04)}
+.cmp-tbl .ours td:nth-child(2){color:var(--purple);font-weight:700}
+.cmp-tbl tr:last-child td{border-bottom:none}
+.cmp-tbl tr:hover td{background:rgba(124,58,237,.03)}
+/* PAYMENT SECTION */
+.payment-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pay-card{background:#fff;border-radius:12px;padding:24px 22px;border:1.5px solid var(--border);text-align:center;transition:all .2s}
+.pay-card:hover{border-color:var(--purple);box-shadow:var(--shadow)}
+.pay-icon{font-size:2rem;margin-bottom:10px}
+.pay-card strong{display:block;font-size:.95rem;font-weight:700;margin-bottom:4px}
+.pay-card span{font-size:.82rem;color:var(--muted)}
+/* FAQ */
+.faq-list{max-width:740px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.faq-item{background:#fff;border-radius:11px;border:1.5px solid var(--border);overflow:hidden;transition:border-color .2s}
+.faq-item.open{border-color:var(--purple)}
+.faq-q{width:100%;background:none;border:none;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;font-family:'Plus Jakarta Sans',sans-serif;font-size:.97rem;font-weight:700;color:var(--dark)}
+.faq-icon{width:26px;height:26px;border-radius:50%;background:var(--cream2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s;color:var(--purple);font-size:1.1rem}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--purple);color:#fff}
+.faq-ans{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-ans-in{padding:0 22px 18px;font-size:.92rem}
+/* CTA BAND */
+.cta-band{background:var(--dark);padding:80px 0;position:relative;overflow:hidden;text-align:center}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(124,58,237,.3) 0%,transparent 70%);pointer-events:none}
+.trust-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.trust-it{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.65)}
+.trust-dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
+/* FOOTER */
+footer{background:var(--dark2);color:rgba(255,255,255,.45);padding:36px 0}
+.foot-in{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px}
+.foot-logo img{height:42px;opacity:.75}
+.foot-links{display:flex;gap:24px;flex-wrap:wrap}
+.foot-links a{font-size:.82rem;transition:color .2s}
+.foot-links a:hover{color:#fff}
+.foot-copy{font-size:.8rem}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:all .6s ease}
+.reveal.vis{opacity:1;transform:none}
+@media(max-width:900px){
+  .pricing-grid,.payment-grid{grid-template-columns:1fr}
+  .plan.feat{transform:none}
+  .guarantee-strip{gap:24px}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a href="index.html" class="nav-logo"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/logo.png" alt="Minha Confeitaria App"></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/funcionalidades">Funcionalidades</a></li>
+      <li><a href="/precos" class="cur">Preços</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="/contact">Contato</a></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="https://app.minhaconfeitaria.com" class="nav-login">Entrar</a>
+      <a href="https://app.minhaconfeitaria.com/register" class="nav-cta">Testar Grátis</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-glow"></div>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="hero-breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Preços</span></div>
+    <div class="tag" style="background:rgba(245,197,0,.15);color:var(--yellow)">Preços</div>
+    <h1>Você no controle<br>do seu negócio</h1>
+    <p>Não precisa de cartão de crédito. Comece grátis e faça upgrade quando quiser crescer mais.</p>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section class="section" id="planos">
+  <div class="container">
+    <div class="pricing-grid">
+      <!-- FREE -->
+      <div class="plan reveal">
+        <div class="plan-cat">Plano Gratuito</div>
+        <div class="plan-sub">Todos têm o direito de empreender</div>
+        <div class="plan-price-row"><span class="p-free">Grátis</span></div>
+        <div class="plan-per">para sempre &nbsp;·&nbsp; sem cartão de crédito</div>
+        <div class="plan-div"></div>
+        <ul class="plan-feats">
+          <li><span class="ck-y">✓</span> Cadastro de Ingredientes</li>
+          <li><span class="ck-y">✓</span> Cadastro de Receitas</li>
+          <li><span class="ck-y">✓</span> Categorias de receitas</li>
+          <li><span class="ck-y">✓</span> Gerador de Orçamento</li>
+          <li><span class="ck-y">✓</span> PDF de Orçamento</li>
+          <li><span class="ck-y">✓</span> Backups Diários</li>
+          <li><span class="ck-y">✓</span> 1 Usuário</li>
+          <li><span class="ck-y">✓</span> Suporte por tickets</li>
+          <li><span class="ck-n">—</span> Gerenciamento de Pedidos</li>
+          <li><span class="ck-n">—</span> Cadastro de Clientes</li>
+          <li><span class="ck-n">—</span> Fluxo de Caixa</li>
+          <li><span class="ck-n">—</span> Relatórios</li>
+          <li><span class="ck-n">—</span> Impressão Térmica</li>
+        </ul>
+        <a href="https://app.minhaconfeitaria.com/register" class="btn btn-outline plan-btn">Entrar de graça</a>
+      </div>
+      <!-- PRO ANUAL (FEATURED) -->
+      <div class="plan feat reveal">
+        <div class="plan-badge">⭐ Mais Popular — 2 Meses Grátis</div>
+        <div class="plan-cat">Plano PRO ANUAL</div>
+        <div class="plan-sub">Seu negócio nos trilhos</div>
+        <div class="plan-price-row"><span class="p-cur">R$</span><span class="p-amt">199</span><span style="font-size:.9rem;color:rgba(255,255,255,.45);align-self:flex-end;margin-bottom:9px">/ano</span></div>
+        <div class="plan-per">equivale a R$&nbsp;16,58/mês &nbsp;·&nbsp; economia de 2 meses</div>
+        <div class="plan-div"></div>
+        <ul class="plan-feats">
+          <li><span class="ck-y">✓</span> Tudo do Plano Gratuito</li>
+          <li><span class="ck-y">✓</span> Gerenciamento de Pedidos</li>
+          <li><span class="ck-y">✓</span> Status e data de entrega</li>
+          <li><span class="ck-y">✓</span> Pagamentos por pedido</li>
+          <li><span class="ck-y">✓</span> Cadastro de Clientes</li>
+          <li><span class="ck-y">✓</span> Fluxo de Caixa Automático</li>
+          <li><span class="ck-y">✓</span> PDF de Pedidos e Orçamentos</li>
+          <li><span class="ck-y">✓</span> Impressão Térmica (80mm)</li>
+          <li><span class="ck-y">✓</span> Envio por WhatsApp</li>
+          <li><span class="ck-y">✓</span> E-mail automático</li>
+          <li><span class="ck-y">✓</span> Relatórios completos</li>
+          <li><span class="ck-y">✓</span> Exportar dados</li>
+          <li><span class="ck-y">✓</span> Backups Diários</li>
+        </ul>
+        <a href="https://pay.hotmart.com/C6446898J?off=jygntvx0" class="btn btn-grad plan-btn" style="box-shadow:0 4px 24px rgba(124,58,237,.5)">Assinar Agora →</a>
+      </div>
+      <!-- PRO MENSAL -->
+      <div class="plan reveal">
+        <div class="plan-cat">Plano PRO Mensal</div>
+        <div class="plan-sub">Seu negócio nos trilhos</div>
+        <div class="plan-price-row"><span class="p-cur">R$</span><span class="p-amt">19</span><span class="p-dec">,90</span></div>
+        <div class="plan-per">/mês &nbsp;·&nbsp; cancele a qualquer hora</div>
+        <div class="plan-div"></div>
+        <ul class="plan-feats">
+          <li><span class="ck-y">✓</span> Tudo do Plano Gratuito</li>
+          <li><span class="ck-y">✓</span> Gerenciamento de Pedidos</li>
+          <li><span class="ck-y">✓</span> Status e data de entrega</li>
+          <li><span class="ck-y">✓</span> Pagamentos por pedido</li>
+          <li><span class="ck-y">✓</span> Cadastro de Clientes</li>
+          <li><span class="ck-y">✓</span> Fluxo de Caixa Automático</li>
+          <li><span class="ck-y">✓</span> PDF de Pedidos e Orçamentos</li>
+          <li><span class="ck-y">✓</span> Impressão Térmica (80mm)</li>
+          <li><span class="ck-y">✓</span> Envio por WhatsApp</li>
+          <li><span class="ck-y">✓</span> E-mail automático</li>
+          <li><span class="ck-y">✓</span> Relatórios completos</li>
+          <li><span class="ck-y">✓</span> Exportar dados</li>
+          <li><span class="ck-y">✓</span> Backups Diários</li>
+        </ul>
+        <a href="https://pay.hotmart.com/C6446898J?off=v1y08b6j&hidePix=1" class="btn btn-grad plan-btn">Assinar Agora →</a>
+      </div>
+    </div>
+
+    <!-- GUARANTEE STRIP -->
+    <div class="guarantee-strip reveal">
+      <div class="g-item"><div class="g-icon">🛡️</div><div><strong>Garantia de 7 dias</strong><span>Reembolso total, sem burocracia</span></div></div>
+      <div class="g-item"><div class="g-icon">🆓</div><div><strong>14 dias grátis no PRO</strong><span>Sem cartão de crédito</span></div></div>
+      <div class="g-item"><div class="g-icon">🔒</div><div><strong>Backups diários</strong><span>Seus dados sempre seguros</span></div></div>
+      <div class="g-item"><div class="g-icon">↩️</div><div><strong>Sem compromisso</strong><span>Cancele quando quiser</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT METHODS -->
+<section class="section" id="pagamento">
+  <div class="container">
+    <div class="sec-head reveal" style="text-align:center;margin-bottom:40px">
+      <div class="tag" style="background:#DCFCE7;color:var(--green)">Pagamento</div>
+      <h2>Formas de pagamento</h2>
+      <p style="max-width:400px;margin:10px auto 0">Processado pela Hotmart — uma das maiores plataformas do Brasil.</p>
+    </div>
+    <div class="payment-grid reveal">
+      <div class="pay-card">
+        <div class="pay-icon">💳</div>
+        <strong>Cartão de Crédito</strong>
+        <span>Acesso imediato após confirmação</span>
+      </div>
+      <div class="pay-card">
+        <div class="pay-icon">🏦</div>
+        <strong>Débito Bancário</strong>
+        <span>Acesso imediato após confirmação</span>
+      </div>
+      <div class="pay-card">
+        <div class="pay-icon">📄</div>
+        <strong>Boleto Bancário</strong>
+        <span>Acesso em até 3 dias úteis após pagamento</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section s-tint" id="faq">
+  <div class="container">
+    <div class="sec-head reveal" style="text-align:center;margin-bottom:40px">
+      <div class="tag" style="background:#FEF3C7;color:#92400E">Dúvidas</div>
+      <h2>Perguntas Frequentes</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q">Como funciona o período de teste de 14 dias? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">Ao se cadastrar, você tem acesso completo ao Plano PRO por 14 dias — sem precisar informar cartão de crédito. Após o período, sua conta migra automaticamente para o Plano Gratuito. Você decide se quer assinar o PRO ou continuar no gratuito.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Preciso de cartão de crédito para me cadastrar? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">Não! O cadastro e o período de teste são completamente gratuitos e não exigem nenhum dado de pagamento. Você só informa cartão (ou boleto) no momento em que decidir assinar o plano PRO.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Quais são as formas de pagamento? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">O pagamento é processado pela <strong>Hotmart</strong>. Aceitamos: Cartão de Crédito (acesso imediato), Débito Bancário (acesso imediato) e Boleto Bancário (acesso em até 3 dias úteis após confirmação do pagamento).</div></div></div>
+      <div class="faq-item"><button class="faq-q">E se eu não gostar? Tenho garantia? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">Sim! Além dos 14 dias de teste grátis, após assinar você tem <strong>7 dias de garantia</strong>. Se não gostar por qualquer motivo, basta solicitar o reembolso — sem burocracia e sem crise. 100% do valor pago.</div></div></div>
+      <div class="faq-item"><button class="faq-q">O que acontece se eu não renovar o plano? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">Sua conta migra automaticamente para o Plano Gratuito. Você <strong>não perde o acesso nem seus dados</strong> — ingredientes, receitas e orçamentos ficam acessíveis. Apenas as funcionalidades PRO (pedidos, clientes, caixa e relatórios) ficam indisponíveis.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Posso mudar do mensal para o anual depois? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">Sim! Você pode fazer upgrade para o plano anual a qualquer momento e aproveitar a economia de 2 meses. Entre em contato com nosso suporte para ajudas com a transição.</div></div></div>
+      <div class="faq-item"><button class="faq-q">O sistema funciona no celular? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">Sim! O sistema é 100% online e funciona em qualquer dispositivo com navegador — computador, tablet ou celular. Recomendamos o Google Chrome para melhor desempenho. Não é necessária nenhuma instalação.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Posso usar fora do Brasil? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">Sim! O sistema está disponível para uso em qualquer país. Hoje a interface é 100% em Português do Brasil. Suporte a outros idiomas está em desenvolvimento no nosso roadmap.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<div class="cta-band">
+  <div class="cta-glow"></div>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="tag" style="background:rgba(245,197,0,.15);color:var(--yellow)">Comece agora</div>
+    <h2 style="color:#fff;margin-bottom:12px">Pronta para começar?</h2>
+    <p style="max-width:420px;margin:0 auto 28px">14 dias no PRO grátis, sem cartão. Se crescer, o sistema já está lá.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:26px">
+      <a href="https://app.minhaconfeitaria.com/register" class="btn btn-grad btn-lg">Testar Grátis por 14 dias →</a>
+      <a href="/funcionalidades" class="btn btn-ghost btn-lg">Ver funcionalidades</a>
+    </div>
+    <div class="trust-row" style="justify-content:center">
+      <div class="trust-it"><span class="trust-dot"></span>Sem cartão de crédito</div>
+      <div class="trust-it"><span class="trust-dot"></span>Plano gratuito permanente</div>
+      <div class="trust-it"><span class="trust-dot"></span>Garantia de 7 dias</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="foot-in">
+      <div class="foot-logo"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/logo.png" alt="Minha Confeitaria App"></div>
+      <div class="foot-links">
+        <a href="/">Home</a>
+        <a href="/funcionalidades">Funcionalidades</a>
+        <a href="/precos">Preços</a>
+        <a href="/politica-de-privacidade">Política de Privacidade</a>
+        <a href="/termos-de-uso">Termos de Uso</a>
+      </div>
+      <div class="foot-copy">Copyright © 2026 Minha Confeitaria · Todos os Direitos Reservados</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('sc',scrollY>40));
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.closest('.faq-item');
+    const ans=item.querySelector('.faq-ans');
+    const open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-ans').style.maxHeight=null;});
+    if(!open){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';}
+  });
+});
+const rv=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');rv.unobserve(e.target);}});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>rv.observe(el));
+</script>
+</body>
+</html>

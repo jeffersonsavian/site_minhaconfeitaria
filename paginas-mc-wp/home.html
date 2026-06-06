@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minha Confeitaria App — Organize, Precifique e Lucre</title>
+<link rel="icon" href="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/logo-mini.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#FFF9F2;color:#1C0A00;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+:root{
+  --cream:#FFF9F2;--cream2:#FFF1E3;--dark:#140700;--dark2:#271000;
+  --purple:#7C3AED;--pink:#E91E8C;--yellow:#F5C500;--coral:#FF6B35;--green:#16A34A;
+  --muted:#7A5C48;--border:#F0DCC8;
+  --grad:linear-gradient(135deg,#7C3AED,#E91E8C);
+  --shadow:0 4px 32px rgba(28,10,0,.1);--shadowlg:0 12px 64px rgba(28,10,0,.18);
+  --r:16px;
+}
+h1,h2{font-family:'Playfair Display',Georgia,serif;line-height:1.12}
+h1{font-size:clamp(2.8rem,5vw,4.4rem);font-weight:900}
+h2{font-size:clamp(1.9rem,3.2vw,2.9rem);font-weight:700}
+h3{font-size:1.2rem;font-weight:700;line-height:1.3}
+p{color:var(--muted);font-size:1rem;line-height:1.75}
+.container{max-width:1200px;margin:0 auto;padding:0 28px}
+.section{padding:96px 0}
+.s-dark{background:var(--dark);color:#fff}
+.s-dark p{color:rgba(255,255,255,.62)}
+.s-tint{background:var(--cream2)}
+.tag{display:inline-block;padding:5px 14px;border-radius:50px;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;border:none;transition:all .2s;text-decoration:none;white-space:nowrap}
+.btn-grad{background:var(--grad);color:#fff;box-shadow:0 4px 24px rgba(124,58,237,.35)}
+.btn-grad:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(124,58,237,.45)}
+.btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.35)}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.btn-outline{background:transparent;color:var(--dark);border:2px solid var(--border)}
+.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
+.btn-lg{padding:18px 36px;font-size:1.1rem}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:all .3s;padding:18px 0}
+nav.sc{background:rgba(255,249,242,.93);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:11px 0;box-shadow:0 1px 24px rgba(28,10,0,.07)}
+.nav-in{display:flex;align-items:center;max-width:1200px;margin:0 auto;padding:0 28px}
+.nav-logo img{height:50px}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;margin-left:auto}
+.nav-links a{font-weight:600;font-size:.92rem;color:rgba(255,255,255,.88);transition:color .2s}
+nav.sc .nav-links a{color:var(--dark)}
+.nav-links a:hover{color:var(--pink)}
+.nav-ctas{display:flex;gap:10px;margin-left:24px}
+.nav-in a:not(.nav-logo,.nav-links a).nav-login{padding:8px 18px;border-radius:50px;font-weight:700;font-size:.88rem;color:#fff;border:1.5px solid rgba(255,255,255,.4);transition:all .2s}
+nav.sc a.nav-login{color:var(--dark);border-color:var(--border)}
+a.nav-login:hover{background:rgba(255,255,255,.12)}
+a.nav-cta{padding:8px 20px;border-radius:50px;background:var(--grad);font-weight:700;font-size:.88rem;color:#fff;box-shadow:0 4px 14px rgba(124,58,237,.32);transition:all .2s}
+a.nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(124,58,237,.44)}
+
+/* HERO */
+#hero{min-height:100vh;background:var(--dark);position:relative;overflow:hidden;display:flex;align-items:center;padding-top:90px}
+.hero-glow{position:absolute;top:-15%;right:-8%;width:560px;height:560px;background:radial-gradient(circle,rgba(124,58,237,.28) 0%,transparent 70%);pointer-events:none}
+.hero-glow2{position:absolute;bottom:5%;left:-5%;width:380px;height:380px;background:radial-gradient(circle,rgba(233,30,140,.18) 0%,transparent 70%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;position:relative;z-index:2;padding:60px 0 80px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(245,197,0,.14);border:1px solid rgba(245,197,0,.28);padding:6px 16px;border-radius:50px;font-size:.82rem;font-weight:700;color:var(--yellow);margin-bottom:22px}
+.hero-title{color:#fff;margin-bottom:18px}
+.hero-title em{color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text;font-style:normal}
+.hero-sub{color:rgba(255,255,255,.68);font-size:1.1rem;margin-bottom:34px;max-width:460px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px}
+.trust-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.trust-it{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.65)}
+.trust-dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:flex-end}
+.app-frame{background:#fff;border-radius:14px;box-shadow:0 24px 88px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.09);overflow:hidden;width:100%;max-width:540px;animation:floatApp 4s ease-in-out infinite;transform:perspective(900px) rotateY(-6deg) rotateX(2.5deg)}
+@keyframes floatApp{0%,100%{transform:perspective(900px) rotateY(-6deg) rotateX(2.5deg) translateY(0)}50%{transform:perspective(900px) rotateY(-6deg) rotateX(2.5deg) translateY(-12px)}}
+.hero-char{position:absolute;bottom:-18px;right:-24px;width:200px;z-index:3;animation:floatC 5s ease-in-out infinite}
+@keyframes floatC{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* MARQUEE */
+.marquee{background:var(--yellow);padding:13px 0;overflow:hidden}
+.marquee-track{display:flex;gap:0;animation:mq 22s linear infinite;width:max-content}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mq-item{display:flex;align-items:center;gap:9px;padding:0 44px;font-weight:800;font-size:.88rem;color:var(--dark);white-space:nowrap}
+.mq-sep{color:rgba(28,10,0,.25);padding:0 0 0 44px}
+
+/* PAIN */
+.sec-head{text-align:center;margin-bottom:52px}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pain-card{background:#fff;border-radius:var(--r);padding:34px 26px;border:1.5px solid var(--border);transition:all .25s;position:relative;overflow:hidden}
+.pain-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.pain-card:nth-child(1)::before{background:var(--coral)}
+.pain-card:nth-child(2)::before{background:var(--purple)}
+.pain-card:nth-child(3)::before{background:var(--pink)}
+.pain-card:hover{transform:translateY(-4px);box-shadow:var(--shadowlg);border-color:transparent}
+.pain-icon{width:54px;height:54px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:18px}
+.pain-card:nth-child(1) .pain-icon{background:#FFE8D6}
+.pain-card:nth-child(2) .pain-icon{background:#EDE9FE}
+.pain-card:nth-child(3) .pain-icon{background:#FCE7F3}
+.pain-card h3{margin-bottom:9px}
+.pain-card p{font-size:.93rem}
+
+/* SOLUTION */
+.sol-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.sol-img{position:relative}
+.sol-img>img:first-child{border-radius:var(--r);box-shadow:var(--shadowlg);width:100%}
+.sol-char{position:absolute;bottom:-10px;right:-36px;width:190px}
+
+/* FEATURES */
+.feat-layout{display:grid;grid-template-columns:264px 1fr;gap:36px;align-items:start}
+.feat-tabs{display:flex;flex-direction:column;gap:6px}
+.ftab{display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:11px;cursor:pointer;transition:all .2s;border:1.5px solid transparent}
+.ftab:hover{background:var(--cream2)}
+.ftab.on{background:#fff;border-color:var(--border);box-shadow:var(--shadow)}
+.ftab-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0}
+.ftab-txt strong{display:block;font-size:.9rem;font-weight:700;color:var(--dark)}
+.ftab-txt span{font-size:.76rem;color:var(--muted)}
+.fpanel{display:none}
+.fpanel.on{display:grid;grid-template-columns:1fr 1.35fr;gap:36px;align-items:center;background:#fff;border-radius:var(--r);padding:34px;box-shadow:var(--shadow);border:1.5px solid var(--border)}
+.fpanel h3{font-size:1.5rem;margin-bottom:10px}
+.fpanel p{margin-bottom:18px;font-size:.94rem}
+.fbadge{display:inline-flex;align-items:center;gap:5px;padding:3px 11px;border-radius:50px;font-size:.76rem;font-weight:700;margin-bottom:12px}
+.fbadge.free{background:#DCFCE7;color:var(--green)}
+.fbadge.pro{background:#FCE7F3;color:var(--pink)}
+.fshot{border-radius:9px;overflow:hidden;box-shadow:0 8px 36px rgba(28,10,0,.13);border:1px solid var(--border)}
+.fshot img{width:100%;display:block}
+
+/* FOR WHOM */
+.whom-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.whom-photo{border-radius:20px;overflow:hidden;box-shadow:var(--shadowlg)}
+.whom-photo img{width:100%;height:440px;object-fit:cover}
+.whom-list{display:flex;flex-direction:column;gap:16px;margin-top:24px}
+.whom-item{display:flex;align-items:flex-start;gap:14px;padding:18px;background:#fff;border-radius:11px;border:1.5px solid var(--border)}
+.whom-check{width:34px;height:34px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.95rem;font-weight:700}
+.whom-item strong{display:block;font-weight:700;font-size:.9rem;margin-bottom:2px}
+.whom-item span{font-size:.82rem;color:var(--muted)}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+.plan{background:#fff;border-radius:20px;padding:34px 26px;border:1.5px solid var(--border);position:relative;transition:all .25s}
+.plan:hover{transform:translateY(-4px);box-shadow:var(--shadowlg)}
+.plan.feat{background:var(--dark);border-color:var(--purple);box-shadow:0 0 0 3px var(--purple),var(--shadowlg);transform:scale(1.03)}
+.plan.feat:hover{transform:scale(1.03) translateY(-4px)}
+.plan-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;padding:4px 15px;border-radius:50px;font-size:.76rem;font-weight:800;white-space:nowrap}
+.plan-cat{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:5px}
+.feat .plan-cat{color:rgba(255,255,255,.55)}
+.plan-sub{font-size:.95rem;font-weight:700;margin-bottom:18px}
+.feat .plan-sub{color:#fff}
+.plan-price-row{display:flex;align-items:flex-start;gap:3px;margin-bottom:4px}
+.p-cur{font-size:1.1rem;font-weight:700;line-height:2.1}
+.feat .p-cur{color:#fff}
+.p-amt{font-family:'Playfair Display',serif;font-size:3.8rem;font-weight:900;line-height:1}
+.feat .p-amt{color:#fff}
+.p-free{font-family:'Playfair Display',serif;font-size:3.4rem;font-weight:900;color:var(--green)}
+.p-dec{font-size:1.15rem;font-weight:700;line-height:2.6}
+.plan-per{font-size:.82rem;color:var(--muted);margin-bottom:22px}
+.feat .plan-per{color:rgba(255,255,255,.48)}
+.plan-div{height:1px;background:var(--border);margin:18px 0}
+.feat .plan-div{background:rgba(255,255,255,.13)}
+.plan-feats{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:26px}
+.plan-feats li{display:flex;align-items:center;gap:9px;font-size:.88rem;font-weight:500}
+.feat .plan-feats li{color:rgba(255,255,255,.83)}
+.ck-y{color:var(--green)}
+.ck-n{color:#ccc}
+.plan-btn{width:100%;text-align:center;display:block}
+
+/* COMPARE */
+.cmp-wrap{margin-top:56px}
+.cmp-wrap>h3{text-align:center;margin-bottom:24px;font-size:1.15rem}
+.cmp-tbl{width:100%;border-collapse:collapse}
+.cmp-tbl th,.cmp-tbl td{padding:13px 18px;text-align:center;font-size:.88rem;border-bottom:1px solid var(--border)}
+.cmp-tbl th{font-weight:800;font-size:.82rem;color:var(--dark)}
+.cmp-tbl th:first-child,.cmp-tbl td:first-child{text-align:left}
+.cmp-tbl .hl{color:var(--purple);font-weight:700}
+.cmp-tbl .ours{background:rgba(124,58,237,.05)}
+.cmp-tbl tr:last-child td{border-bottom:none}
+
+/* FAQ */
+.faq-list{max-width:740px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.faq-item{background:#fff;border-radius:11px;border:1.5px solid var(--border);overflow:hidden;transition:border-color .2s}
+.faq-item.open{border-color:var(--purple)}
+.faq-q{width:100%;background:none;border:none;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;font-family:'Plus Jakarta Sans',sans-serif;font-size:.97rem;font-weight:700;color:var(--dark)}
+.faq-icon{width:26px;height:26px;border-radius:50%;background:var(--cream2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s;color:var(--purple);font-size:1.1rem}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--purple);color:#fff}
+.faq-ans{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-ans-in{padding:0 22px 18px;font-size:.92rem}
+
+/* FINAL CTA */
+.cta-final{background:var(--dark);position:relative;overflow:hidden}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:360px;background:radial-gradient(ellipse,rgba(124,58,237,.28) 0%,transparent 70%);pointer-events:none}
+.cta-grid{display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;position:relative;z-index:2}
+.cta-title{color:#fff;margin-bottom:14px}
+.cta-sub{color:rgba(255,255,255,.62);margin-bottom:30px;font-size:1.05rem}
+.cta-acts{display:flex;gap:14px;flex-wrap:wrap}
+.cta-char{width:260px}
+
+/* FOOTER */
+footer{background:var(--dark2);color:rgba(255,255,255,.45);padding:36px 0}
+.foot-in{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px}
+.foot-logo img{height:42px;opacity:.75}
+.foot-links{display:flex;gap:24px;flex-wrap:wrap}
+.foot-links a{font-size:.82rem;transition:color .2s}
+.foot-links a:hover{color:#fff}
+.foot-copy{font-size:.8rem}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:all .6s ease}
+.reveal.vis{opacity:1;transform:none}
+
+/* RESPONSIVE */
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.testi-card{background:#fff;border-radius:var(--r);padding:32px 26px;border:1.5px solid var(--border);transition:all .25s;position:relative}
+.testi-card:hover{transform:translateY(-4px);box-shadow:var(--shadowlg)}
+.testi-stars{color:#F59E0B;font-size:1.05rem;letter-spacing:2px;margin-bottom:14px}
+.testi-quote{font-size:.94rem;line-height:1.77;color:var(--muted);margin-bottom:20px;padding-left:6px;border-left:3px solid var(--purple);opacity:.9}
+.testi-author{display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid var(--border)}
+.testi-av{width:44px;height:44px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0}
+.testi-name strong{display:block;font-size:.9rem;font-weight:700}
+.testi-name span{font-size:.78rem;color:var(--muted)}
+.testi-note{text-align:center;margin-top:24px;font-size:.78rem;color:rgba(124,58,237,.55);font-style:italic;background:rgba(124,58,237,.06);border:1px dashed rgba(124,58,237,.2);padding:10px 18px;border-radius:8px;max-width:480px;margin-left:auto;margin-right:auto}
+@media(max-width:900px){.testi-grid{grid-template-columns:1fr}}
+
+@media(max-width:900px){
+  .hero-grid,.sol-grid,.whom-grid,.cta-grid{grid-template-columns:1fr}
+  .hero-visual,.sol-img,.whom-photo,.cta-char{display:none}
+  .pain-grid,.pricing-grid{grid-template-columns:1fr}
+  .plan.feat{transform:none}
+  .feat-layout{grid-template-columns:1fr}
+  .feat-tabs{flex-direction:row;overflow-x:auto;padding-bottom:6px}
+  .fpanel.on{grid-template-columns:1fr}
+  .fshot{display:none}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-in">
+    <a href="#" class="nav-logo"><img src="https://edkfcp9e88s.exactdn.com/wp-content/uploads/2018/02/Minha-confeitaria-Logo-1.png" alt="Minha Confeitaria App"></a>
+    <ul class="nav-links">
+      <li><a href="/funcionalidades">Funcionalidades</a></li>
+      <li><a href="/precos">Preços</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contato</a></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="https://app.minhaconfeitaria.com" class="nav-login">Entrar</a>
+      <a href="https://app.minhaconfeitaria.com/register" class="nav-cta">Testar Grátis</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg>
+          No mercado desde 2017 &nbsp;·&nbsp; Versão 4.4
+        </div>
+        <h1 class="hero-title">Do caderninho<br>para o <em>sistema.</em></h1>
+        <p class="hero-sub">Organize sua confeitaria, descubra o seu lucro real e pare de vender no prejuízo — tudo em um só lugar, sem planilhas.</p>
+        <div class="hero-ctas">
+          <a href="https://app.minhaconfeitaria.com/register" class="btn btn-grad btn-lg">Testar Grátis por 14 dias →</a>
+          <a href="#features" class="btn btn-ghost btn-lg">Ver funcionalidades</a>
+        </div>
+        <div class="trust-row">
+          <div class="trust-it"><span class="trust-dot"></span>Sem cartão de crédito</div>
+          <div class="trust-it"><span class="trust-dot"></span>Plano gratuito permanente</div>
+          <div class="trust-it"><span class="trust-dot"></span>Garantia de 7 dias</div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="app-frame"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/MC-DASHBOARD.png" alt="Dashboard Minha Confeitaria"></div>
+        <img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/MC-Love.png" alt="" class="hero-char" aria-hidden="true">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="mq">
+    <span class="mq-item">📅 No mercado desde 2017</span><span class="mq-sep">◆</span>
+    <span class="mq-item">💚 Plano gratuito permanente</span><span class="mq-sep">◆</span>
+    <span class="mq-item">💰 R$ 19,90/mês — menor preço do mercado</span><span class="mq-sep">◆</span>
+    <span class="mq-item">🚫 Sem cartão de crédito para começar</span><span class="mq-sep">◆</span>
+    <span class="mq-item">🔒 Backups diários automáticos</span><span class="mq-sep">◆</span>
+    <span class="mq-item">📄 PDF de orçamento direto no WhatsApp</span><span class="mq-sep">◆</span>
+    <span class="mq-item">🖨️ Impressão térmica nativa 80mm</span><span class="mq-sep">◆</span>
+    <span class="mq-item">📅 No mercado desde 2017</span><span class="mq-sep">◆</span>
+    <span class="mq-item">💚 Plano gratuito permanente</span><span class="mq-sep">◆</span>
+    <span class="mq-item">💰 R$ 19,90/mês — menor preço do mercado</span><span class="mq-sep">◆</span>
+    <span class="mq-item">🚫 Sem cartão de crédito para começar</span><span class="mq-sep">◆</span>
+    <span class="mq-item">🔒 Backups diários automáticos</span><span class="mq-sep">◆</span>
+    <span class="mq-item">📄 PDF de orçamento direto no WhatsApp</span><span class="mq-sep">◆</span>
+    <span class="mq-item">🖨️ Impressão térmica nativa 80mm</span><span class="mq-sep">◆</span>
+  </div>
+</div>
+
+<!-- PAIN -->
+<section class="section" id="pain">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="tag" style="background:#FFE8D6;color:var(--coral)">O Problema</div>
+      <h2>O que está te impedindo<br>de lucrar de verdade?</h2>
+      <p style="max-width:500px;margin:10px auto 0">A maioria das confeiteiras trabalha muito e não sabe se está tendo lucro. Não é falta de talento — é falta de ferramenta.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <div class="pain-icon">💸</div>
+        <h3>Precificação no sentimento</h3>
+        <p>Você calcula o custo "mais ou menos" e cobra um valor que parece justo — sem saber se está ganhando ou perdendo por receita.</p>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">📋</div>
+        <h3>Pedidos e datas perdidas</h3>
+        <p>Um caderninho, um grupo de WhatsApp e uma planilha que ninguém atualiza. Resultado: pedido esquecido, cliente insatisfeita.</p>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">💰</div>
+        <h3>Dinheiro que some</h3>
+        <p>Você trabalhou o mês todo, recebeu bastante — mas no final não sabe onde foi parar. Caixa do negócio misturado com o pessoal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="section s-dark" id="solution">
+  <div class="container">
+    <div class="sol-grid">
+      <div class="reveal">
+        <div class="tag" style="background:rgba(245,197,0,.15);color:var(--yellow)">A Solução</div>
+        <h2 style="color:#fff;margin-bottom:18px">A Minha Confeitaria veio resolver esse cenário.</h2>
+        <p style="margin-bottom:20px">As funcionalidades do sistema vão além de organizar — elas transformam o seu negócio de uma pequena confeitaria em uma empresa lucrativa.</p>
+        <p style="margin-bottom:30px">Você poderá focar no que faz de melhor: criar. O sistema cuida do resto — dos custos às entregas, do orçamento ao caixa.</p>
+        <a href="https://app.minhaconfeitaria.com/register" class="btn btn-grad btn-lg">Começar agora, é grátis →</a>
+      </div>
+      <div class="sol-img reveal">
+        <img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/MC-MEUSPEDIDOS.png" alt="Meus Pedidos">
+        <img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/Mc-Supresa.png" alt="" class="sol-char" aria-hidden="true">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="sec-head reveal" style="margin-bottom:44px">
+      <div class="tag" style="background:#EDE9FE;color:var(--purple)">Funcionalidades</div>
+      <h2>Tudo que você precisa,<br>em um só lugar</h2>
+      <p style="max-width:460px;margin:10px auto 0">Do ingrediente ao relatório — um fluxo completo construído especialmente para confeiteiras brasileiras.</p>
+    </div>
+    <div class="feat-layout">
+      <div class="feat-tabs" id="ftabs">
+        <div class="ftab on" data-p="receitas"><div class="ftab-icon" style="background:#FEF3C7">📋</div><div class="ftab-txt"><strong>Receitas</strong><span>Custos automáticos</span></div></div>
+        <div class="ftab" data-p="ingredientes"><div class="ftab-icon" style="background:#DCFCE7">🥚</div><div class="ftab-txt"><strong>Ingredientes</strong><span>Preços em tempo real</span></div></div>
+        <div class="ftab" data-p="orcamentos"><div class="ftab-icon" style="background:#EDE9FE">📄</div><div class="ftab-txt"><strong>Orçamentos</strong><span>PDF no WhatsApp</span></div></div>
+        <div class="ftab" data-p="pedidos"><div class="ftab-icon" style="background:#FCE7F3">📦</div><div class="ftab-txt"><strong>Pedidos</strong><span>Controle total</span></div></div>
+        <div class="ftab" data-p="clientes"><div class="ftab-icon" style="background:#DBEAFE">👥</div><div class="ftab-txt"><strong>Clientes</strong><span>Histórico completo</span></div></div>
+        <div class="ftab" data-p="fluxo"><div class="ftab-icon" style="background:#DCFCE7">💳</div><div class="ftab-txt"><strong>Fluxo de Caixa</strong><span>Automático</span></div></div>
+        <div class="ftab" data-p="relatorios"><div class="ftab-icon" style="background:#FEE2E2">📊</div><div class="ftab-txt"><strong>Relatórios</strong><span>Dados para crescer</span></div></div>
+      </div>
+      <div id="fpanels">
+        <div class="fpanel on" id="p-receitas">
+          <div><div class="fbadge free">✓ Grátis</div><h3>Registre todas as suas receitas</h3><p>Tenha todas as suas receitas organizadas na palma da mão. Vincule ingredientes, defina o rendimento e o sistema calcula automaticamente o custo por unidade e a sua margem de lucro.</p><a href="#pricing" class="btn btn-grad">Começar grátis →</a></div>
+          <div class="fshot"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/MC-RECEITAS.png" alt="Receitas"></div>
+        </div>
+        <div class="fpanel" id="p-ingredientes">
+          <div><div class="fbadge free">✓ Grátis</div><h3>Ingredientes com custo inteligente</h3><p>Ao alterar o preço de um ingrediente, os custos de <strong>todas as suas receitas</strong> são ajustados automaticamente — revelando o lucro efetivo de cada pedido. Chega de recalcular tudo na mão.</p><a href="#pricing" class="btn btn-grad">Começar grátis →</a></div>
+          <div class="fshot"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/MC-INGREDIENTES.png" alt="Ingredientes"></div>
+        </div>
+        <div class="fpanel" id="p-orcamentos">
+          <div><div class="fbadge free">✓ Grátis</div><h3>Orçamento profissional em segundos</h3><p>Selecione as receitas e quantidades — o orçamento em PDF profissional está pronto para enviar direto pelo WhatsApp do cliente. Do sistema para o cliente em menos de 1 minuto.</p><a href="#pricing" class="btn btn-grad">Começar grátis →</a></div>
+          <div class="fshot"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/MC-GERARORCAMENTO.png" alt="Orçamentos"></div>
+        </div>
+        <div class="fpanel" id="p-pedidos">
+          <div><div class="fbadge pro">★ PRO</div><h3>Controle total dos pedidos</h3><p>Status, datas de entrega, pagamentos parciais — tudo em um só lugar. Organização é tão importante quanto a qualidade do seu produto: um pedido esquecido pode destruir uma reputação.</p><a href="#pricing" class="btn btn-grad">Ver plano PRO →</a></div>
+          <div class="fshot"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/MC-MEUSPEDIDOS.png" alt="Pedidos"></div>
+        </div>
+        <div class="fpanel" id="p-clientes">
+          <div><div class="fbadge pro">★ PRO</div><h3>Todos os seus clientes a um clique</h3><p>Cadastro completo com histórico de todos os pedidos. Saiba quem compra mais, com qual frequência e qual o ticket médio de cada cliente.</p><a href="#pricing" class="btn btn-grad">Ver plano PRO →</a></div>
+          <div class="fshot"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/MC-CLIENTES.png" alt="Clientes"></div>
+        </div>
+        <div class="fpanel" id="p-fluxo">
+          <div><div class="fbadge pro">★ PRO</div><h3>Fluxo de Caixa automático</h3><p>Ao finalizar um pedido o sistema gera automaticamente o movimento no seu fluxo de caixa. O dinheiro do negócio, organizado sem esforço extra.</p><a href="#pricing" class="btn btn-grad">Ver plano PRO →</a></div>
+          <div class="fshot"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/MC-FLUXO.png" alt="Fluxo de Caixa"></div>
+        </div>
+        <div class="fpanel" id="p-relatorios">
+          <div><div class="fbadge pro">★ PRO</div><h3>Relatórios para crescer</h3><p>Planejar utilizando dados reais é muito mais produtivo. Veja histórico de pedidos, custos, lucro e tendências. Tome decisões com base em números, não em intuição.</p><a href="#pricing" class="btn btn-grad">Ver plano PRO →</a></div>
+          <div class="fshot"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/MC-RELATORIO.png" alt="Relatórios"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section class="section s-tint" id="whom">
+  <div class="container">
+    <div class="whom-grid">
+      <div class="whom-photo reveal"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/casal-bakery.jpg" alt="Confeiteiros felizes em sua loja"></div>
+      <div class="reveal">
+        <div class="tag" style="background:#FCE7F3;color:var(--pink)">Para quem é?</div>
+        <h2>Para quem produz com paixão<br>e quer lucrar de verdade.</h2>
+        <p style="margin-bottom:6px">Pode ser de casa ou de uma pequena loja — o que importa é organização.</p>
+        <div class="whom-list">
+          <div class="whom-item"><div class="whom-check">✓</div><div><strong>Confeiteiras e doceiras autônomas</strong><span>Que vendem por encomenda e precisam sair do caderninho</span></div></div>
+          <div class="whom-item"><div class="whom-check">✓</div><div><strong>Pequenas confeitarias físicas</strong><span>Que precisam de controle financeiro e organização de pedidos</span></div></div>
+          <div class="whom-item"><div class="whom-check">✓</div><div><strong>Salgadeiras, doceiras, hamburguerias artesanais</strong><span>Qualquer negócio de alimentos por encomenda</span></div></div>
+          <div class="whom-item"><div class="whom-check">✓</div><div><strong>Quem está começando agora</strong><span>Plano gratuito real — sem cartão, sem prazo, sem pressão</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="depoimentos">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="tag" style="background:#FEF3C7;color:#92400E">Depoimentos</div>
+      <h2>O que dizem as confeiteiras<br>que já usam</h2>
+      <p style="max-width:440px;margin:10px auto 0">Histórias reais de quem transformou o negócio com organização e controle.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Antes eu não sabia se estava tendo lucro ou prejuízo. Com o sistema, descobri que estava vendendo brigadeiro abaixo do custo! Reajustei os preços e em 2 meses vi a diferença no caixa."</p>
+        <div class="testi-author">
+          <div class="testi-av">MS</div>
+          <div class="testi-name"><strong>Maria S.</strong><span>São Paulo &nbsp;·&nbsp; Confeiteira autônoma</span></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Nunca mais perdi um pedido. Antes eu anotava tudo num caderno e vivia com medo de esquecer alguma data. Agora vejo tudo na tela — cliente, data de entrega e valor."</p>
+        <div class="testi-author">
+          <div class="testi-av">AR</div>
+          <div class="testi-name"><strong>Ana R.</strong><span>Belo Horizonte &nbsp;·&nbsp; Doceria artesanal</span></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"O fluxo de caixa automático mudou tudo pra mim. Antes eu misturava o dinheiro do negócio com o pessoal. Agora sei exatamente quanto lucrei no mês, sem fazer nada extra."</p>
+        <div class="testi-author">
+          <div class="testi-av">CM</div>
+          <div class="testi-name"><strong>Carolina M.</strong><span>Porto Alegre &nbsp;·&nbsp; Salgadeira</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="tag" style="background:#EDE9FE;color:var(--purple)">Preços</div>
+      <h2>Você no controle<br>do seu negócio</h2>
+      <p style="max-width:460px;margin:10px auto 0">Não precisa de cartão. Após o teste, seu plano migra para o Gratuito automaticamente — sem perder nenhum dado.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="plan reveal">
+        <div class="plan-cat">Plano Gratuito</div>
+        <div class="plan-sub">Todos têm o direito de empreender</div>
+        <div class="plan-price-row"><span class="p-free">Grátis</span></div>
+        <div class="plan-per">para sempre &nbsp;·&nbsp; sem cartão</div>
+        <div class="plan-div"></div>
+        <ul class="plan-feats">
+          <li><span class="ck-y">✓</span> Cadastro de Ingredientes</li>
+          <li><span class="ck-y">✓</span> Cadastro de Receitas</li>
+          <li><span class="ck-y">✓</span> Gerador de Orçamento</li>
+          <li><span class="ck-y">✓</span> Backups Diários</li>
+          <li><span class="ck-y">✓</span> 1 Usuário</li>
+          <li><span class="ck-n">—</span> Gerenciamento de Pedidos</li>
+          <li><span class="ck-n">—</span> Cadastro de Clientes</li>
+          <li><span class="ck-n">—</span> Fluxo de Caixa</li>
+        </ul>
+        <a href="https://app.minhaconfeitaria.com/register" class="btn btn-outline plan-btn">Entrar de graça</a>
+      </div>
+      <div class="plan feat reveal">
+        <div class="plan-badge">⭐ Mais Popular — 2 Meses Grátis</div>
+        <div class="plan-cat">Plano PRO ANUAL</div>
+        <div class="plan-sub">Seu negócio nos trilhos</div>
+        <div class="plan-price-row"><span class="p-cur">R$</span><span class="p-amt">199</span><span style="font-size:.9rem;color:rgba(255,255,255,.45);align-self:flex-end;margin-bottom:9px">/ano</span></div>
+        <div class="plan-per">equivale a R$ 16,58/mês &nbsp;·&nbsp; economia de 2 meses</div>
+        <div class="plan-div"></div>
+        <ul class="plan-feats">
+          <li><span class="ck-y">✓</span> Tudo do Plano Gratuito</li>
+          <li><span class="ck-y">✓</span> Gerenciamento de Pedidos</li>
+          <li><span class="ck-y">✓</span> Cadastro de Clientes</li>
+          <li><span class="ck-y">✓</span> Fluxo de Caixa Automático</li>
+          <li><span class="ck-y">✓</span> PDF de Orçamentos e Pedidos</li>
+          <li><span class="ck-y">✓</span> Impressão Térmica (80mm)</li>
+          <li><span class="ck-y">✓</span> Envio por WhatsApp</li>
+          <li><span class="ck-y">✓</span> Relatórios completos</li>
+        </ul>
+        <a href="https://pay.hotmart.com/C6446898J?off=jygntvx0" class="btn btn-grad plan-btn">Assinar Agora →</a>
+      </div>
+      <div class="plan reveal">
+        <div class="plan-cat">Plano PRO</div>
+        <div class="plan-sub">Seu negócio nos trilhos</div>
+        <div class="plan-price-row"><span class="p-cur">R$</span><span class="p-amt">19</span><span class="p-dec">,90</span></div>
+        <div class="plan-per">/mês &nbsp;·&nbsp; cancele a qualquer hora</div>
+        <div class="plan-div"></div>
+        <ul class="plan-feats">
+          <li><span class="ck-y">✓</span> Tudo do Plano Gratuito</li>
+          <li><span class="ck-y">✓</span> Gerenciamento de Pedidos</li>
+          <li><span class="ck-y">✓</span> Cadastro de Clientes</li>
+          <li><span class="ck-y">✓</span> Fluxo de Caixa Automático</li>
+          <li><span class="ck-y">✓</span> PDF de Orçamentos e Pedidos</li>
+          <li><span class="ck-y">✓</span> Impressão Térmica (80mm)</li>
+          <li><span class="ck-y">✓</span> Envio por WhatsApp</li>
+          <li><span class="ck-y">✓</span> Relatórios completos</li>
+        </ul>
+        <a href="https://pay.hotmart.com/C6446898J?off=v1y08b6j&hidePix=1" class="btn btn-grad plan-btn">Assinar Agora →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section s-tint" id="faq">
+  <div class="container">
+    <div class="sec-head reveal">
+      <h2>Perguntas Frequentes</h2>
+      <p style="max-width:380px;margin:10px auto 0">Tudo que você precisa saber antes de começar.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q">Como terei acesso à Minha Confeitaria App? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">O acesso é feito através da página de LOGIN em <strong>app.minhaconfeitaria.com</strong>. Todo o sistema é online — não há instalação. Recomendamos o Google Chrome para melhor desempenho.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Quais são as formas de pagamento? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">Pagamento processado pela <strong>Hotmart</strong>. Aceitamos cartão de crédito (acesso imediato), débito bancário (acesso imediato) e boleto bancário (acesso em até 3 dias úteis após confirmação).</div></div></div>
+      <div class="faq-item"><button class="faq-q">E se eu não gostar? Tenho garantia? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">Sim! 14 dias de teste grátis sem cartão para experimentar o PRO completo. Após assinar, se não gostar por qualquer motivo, reembolso em até 7 dias — sem burocracia e sem crise.</div></div></div>
+      <div class="faq-item"><button class="faq-q">O que acontece se eu não renovar? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">Sua conta migra automaticamente para o plano gratuito. Você não perde o acesso nem seus dados — apenas as funcionalidades PRO como pedidos, clientes e fluxo de caixa.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Posso usar no celular? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">Sim! O sistema é 100% online e funciona em qualquer dispositivo com navegador — computador, tablet ou celular. Recomendamos o Google Chrome.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Não moro no Brasil. Posso utilizar? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">Sim! O sistema está disponível para uso em qualquer país. Hoje a interface é 100% em Português do Brasil; suporte a outros idiomas está no roadmap.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Meus dados ficam seguros? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">Seus dados ficam em servidores profissionais com backups diários automáticos. Infraestrutura Hetzner + AWS S3 — os mesmos provedores usados por grandes empresas.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section cta-final" id="contact">
+  <div class="cta-glow"></div>
+  <div class="container">
+    <div class="cta-grid">
+      <div class="reveal">
+        <h2 class="cta-title">Pronta para conhecer<br>o seu <em style="color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text;font-style:normal">lucro real?</em></h2>
+        <p class="cta-sub">Comece de graça, sem cartão, sem compromisso. Se crescer, o sistema já está lá — esperando por você.</p>
+        <div class="cta-acts">
+          <a href="https://app.minhaconfeitaria.com/register" class="btn btn-grad btn-lg">Testar Grátis por 14 dias →</a>
+          <a href="/contato" class="btn btn-ghost btn-lg">Falar com a equipe</a>
+        </div>
+        <div class="trust-row" style="margin-top:26px">
+          <div class="trust-it"><span class="trust-dot"></span>Sem cartão de crédito</div>
+          <div class="trust-it"><span class="trust-dot"></span>14 dias no PRO grátis</div>
+          <div class="trust-it"><span class="trust-dot"></span>Garantia de 7 dias</div>
+        </div>
+      </div>
+      <img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/apontando.png" alt="" class="cta-char" style="margin-bottom: -115px; transform: scaleX(-1);" aria-hidden="true">
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-in">
+      <div class="foot-logo"><img src="https://edkfcp9e88s.exactdn.com/wp-content/uploads/2018/02/Minha-confeitaria-Logo-1.png" alt="Minha Confeitaria App"></div>
+      <div class="foot-links">
+        <a href="https://minhaconfeitaria.com.br/politica-de-privacidade/">Política de Privacidade</a>
+        <a href="https://minhaconfeitaria.com.br/termos-de-uso/">Termos de Uso</a>
+        <a href="https://minhaconfeitaria.com.br/aviso-legal/">Aviso Legal</a>
+        <a href="mailto:contato@minhaconfeitaria.com">Contato</a>
+      </div>
+      <div class="foot-copy">Copyright © 2026 Minha Confeitaria · Todos os Direitos Reservados</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV SCROLL
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('sc',scrollY>40));
+
+// FEATURE TABS
+document.getElementById('ftabs').addEventListener('click',e=>{
+  const t=e.target.closest('.ftab');if(!t)return;
+  const p=t.dataset.p;
+  document.querySelectorAll('.ftab').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.fpanel').forEach(x=>x.classList.remove('on'));
+  t.classList.add('on');
+  document.getElementById('p-'+p).classList.add('on');
+});
+
+// FAQ
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.closest('.faq-item');
+    const ans=item.querySelector('.faq-ans');
+    const open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{
+      i.classList.remove('open');
+      i.querySelector('.faq-ans').style.maxHeight=null;
+    });
+    if(!open){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';}
+  });
+});
+
+// SCROLL REVEAL
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+
+<!-- React + Tweaks -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+const {TweaksPanel,TweakSection,TweakColor,TweakToggle,TweakRadio,useTweaks}=window;
+
+const TWEAK_DEFAULTS=/*EDITMODE-BEGIN*/{
+  "accent":"#7C3AED",
+  "heroHeadline":"Do caderninho para o sistema.",
+  "showCompare":true,
+  "darkBg":false
+}/*EDITMODE-END*/;
+
+function SiteTweaks(){
+  const[t,setTweak]=useTweaks(TWEAK_DEFAULTS);
+  React.useEffect(()=>{
+    const r=document.documentElement;
+    r.style.setProperty('--purple',t.accent);
+    r.style.setProperty('--grad',`linear-gradient(135deg,${t.accent},#E91E8C)`);
+    const ht=document.querySelector('.hero-title');
+    if(ht){
+      const parts=t.heroHeadline.replace('para o ','|||');
+      if(parts.includes('|||')){
+        const[a,b]=parts.split('|||');
+        ht.innerHTML=`${a}<br>para o <em style="color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text;font-style:normal">${b}</em>`;
+      } else {
+        ht.innerHTML=`<em style="color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text;font-style:normal">${t.heroHeadline}</em>`;
+      }
+    }
+    const cmp=document.getElementById('compareTable');
+    if(cmp)cmp.style.display=t.showCompare?'':'none';
+    document.body.style.setProperty('--cream',t.darkBg?'#111':'#FFF9F2');
+    document.body.style.setProperty('--cream2',t.darkBg?'#1a1a1a':'#FFF1E3');
+    document.body.style.background=t.darkBg?'#111':'';
+  },[t]);
+  return(
+    <TweaksPanel title="Tweaks">
+      <TweakSection title="Cor de destaque">
+        <TweakColor label="Accent" id="accent" value={t.accent}
+          options={['#7C3AED','#E91E8C','#FF6B35','#16A34A','#0EA5E9']}
+          onChange={v=>setTweak('accent',v)}/>
+      </TweakSection>
+      <TweakSection title="Hero">
+        <TweakRadio label="Headline" id="heroHeadline" value={t.heroHeadline}
+          options={['Do caderninho para o sistema.','Organize. Precifique. Lucre.','Conheça seu lucro real.']}
+          onChange={v=>setTweak('heroHeadline',v)}/>
+      </TweakSection>
+      <TweakSection title="Seções">
+        <TweakToggle label="Tabela comparativa" id="showCompare" value={t.showCompare} onChange={v=>setTweak('showCompare',v)}/>
+        <TweakToggle label="Fundo escuro" id="darkBg" value={t.darkBg} onChange={v=>setTweak('darkBg',v)}/>
+      </TweakSection>
+    </TweaksPanel>
+  );
+}
+
+const root=document.createElement('div');
+document.body.appendChild(root);
+ReactDOM.createRoot(root).render(<SiteTweaks/>);
+</script>
+</body>
+</html>

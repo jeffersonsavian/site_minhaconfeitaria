@@ -1,0 +1,24 @@
+---
+---
+
+<nav id="nav">
+  <div class="nav-in">
+    <a href="/" class="nav-logo"><img src="/images/logo-nav.png" alt="Minha Confeitaria App"></a>
+    <ul class="nav-links">
+      <li><a href="/funcionalidades">Funcionalidades</a></li>
+      <li><a href="/precos">Preços</a></li>
+      <li><a href="/#faq">FAQ</a></li>
+      <li><a href="/contato">Contato</a></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="https://app.minhaconfeitaria.com" class="nav-login">Entrar</a>
+      <a href="https://app.minhaconfeitaria.com/register" class="nav-cta">Testar Grátis</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 40));
+</script>

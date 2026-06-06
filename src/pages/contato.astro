@@ -1,0 +1,273 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contato — Minha Confeitaria App" description="Fale com a equipe do Minha Confeitaria App. Tire dúvidas, peça suporte ou conheça nossos planos para a sua confeitaria." canonical="/contato">
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-glow3"></div>
+  <div class="container" style="position:relative;z-index:2;text-align:center">
+    <div class="hero-eyebrow">Vamos conversar</div>
+    <h1 class="hero-title">Fale com a <em>equipe</em></h1>
+    <p class="hero-sub">Tire dúvidas, peça suporte ou conheça nossos planos. Estamos aqui para ajudar sua confeitaria a crescer.</p>
+  </div>
+</section>
+
+<div class="cards-wrap">
+  <div class="container">
+    <div class="contact-cards">
+      <div class="contact-card">
+        <div class="cc-icon">💬</div>
+        <h3>Chat ao Vivo</h3>
+        <p>Disponível de seg-sex, 9h às 17h (Brasília)</p>
+      </div>
+      <div class="contact-card">
+        <div class="cc-icon">📧</div>
+        <h3>E-mail</h3>
+        <p>contato@minhaconfeitaria.com</p>
+      </div>
+      <div class="contact-card">
+        <div class="cc-icon">💭</div>
+        <h3>Feedback</h3>
+        <p>Sua opinião é muito importante para nós</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="form-grid">
+      <div class="form-content">
+        <div class="tag" style="background:#EDE9FE;color:var(--purple)">Envie sua mensagem</div>
+        <h2>Tire suas dúvidas</h2>
+        <p>Preencha o formulário abaixo e responderemos em até 24 horas.</p>
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-field">
+              <label>Nome <span>*</span></label>
+              <input type="text" name="name" placeholder="Seu nome completo" required>
+            </div>
+            <div class="form-field">
+              <label>E-mail <span>*</span></label>
+              <input type="email" name="email" placeholder="seu@email.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Telefone</label>
+              <input type="tel" name="phone" placeholder="(11) 99999-9999">
+            </div>
+            <div class="form-field">
+              <label>Assunto <span>*</span></label>
+              <select name="subject" required>
+                <option value="">Selecione um assunto</option>
+                <option value="dúvida">Tenho uma dúvida</option>
+                <option value="suporte">Preciso de suporte</option>
+                <option value="planos">Informações sobre planos</option>
+                <option value="feedback">Feedback/Sugestão</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Mensagem <span>*</span></label>
+            <textarea name="message" placeholder="Conte-nos como podemos ajudar..." required></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-grad">Enviar Mensagem</button>
+            <span class="form-note"><!-- TODO: configurar endpoint de formulário --></span>
+          </div>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="fs-icon">✓</div>
+          <div class="fs-title">Mensagem enviada!</div>
+          <div class="fs-sub">Obrigado! Responderemos em breve.</div>
+        </div>
+      </div>
+      <div class="form-image">
+        <img src="/images/casal-bakery.jpg" alt="Equipe Minha Confeitaria">
+        <div class="form-image-badge">
+          <div class="fib-dot"></div>
+          <div class="fib-text">
+            <strong>Online agora</strong>
+            <span>Pronto para ajudar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section s-dark">
+  <div class="container">
+    <div class="sec-head" style="margin-bottom:52px;text-align:center;color:#fff">
+      <h2 style="color:#fff">Contato Direto</h2>
+      <p style="color:rgba(255,255,255,.62)">Você também pode entrar em contato conosco pelos meios abaixo:</p>
+    </div>
+    <div class="direct-grid">
+      <div class="direct-item">
+        <div class="di-icon">📧</div>
+        <div class="di-text">
+          <strong>E-mail</strong>
+          <a href="mailto:contato@minhaconfeitaria.com">contato@minhaconfeitaria.com</a>
+          <span>Respondemos em até 24h</span>
+        </div>
+      </div>
+      <div class="direct-item">
+        <div class="di-icon">💬</div>
+        <div class="di-text">
+          <strong>WhatsApp</strong>
+          <a href="https://wa.me/5511999999999" target="_blank">Conversar</a>
+          <span>Seg-sex, 9h às 17h</span>
+        </div>
+      </div>
+      <div class="direct-item">
+        <div class="di-icon">🌐</div>
+        <div class="di-text">
+          <strong>Redes Sociais</strong>
+          <a href="https://instagram.com/minhaconfeitaria" target="_blank">@minhaconfeitaria</a>
+          <span>Acompanhe novidades</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section s-tint" id="faq">
+  <div class="container">
+    <div class="sec-head reveal" style="text-align:center;margin-bottom:52px">
+      <h2>Perguntas Frequentes</h2>
+      <p style="max-width:380px;margin:10px auto 0">Tudo que você precisa saber.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q">Qual é o tempo médio de resposta? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">Respondemos a maioria das dúvidas em até 24 horas. Em dias úteis, tentamos responder em poucas horas.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Como funciona o suporte técnico? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">Temos suporte via e-mail e chat ao vivo. Para problemas mais complexos, agendamos uma chamada diretamente.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Vocês têm documentação ou tutoriais? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">Sim! Dentro do sistema você encontra tutoriais em vídeo, guias passo a passo e uma base de conhecimento completa.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Posso agendar uma demonstração? <span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-in">Claro! Entre em contato conosco e agende uma demonstração gratuita. Nosso time adora mostrar o sistema em ação.</div></div></div>
+    </div>
+  </div>
+</section>
+</BaseLayout>
+
+<style>
+#hero { background: var(--dark); position: relative; overflow: hidden; padding: 160px 0 100px; text-align: center; }
+.hero-glow { position: absolute; top: -10%; right: 10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(124, 58, 237, 0.26) 0%, transparent 68%); pointer-events: none; }
+.hero-glow2 { position: absolute; bottom: -10%; left: 5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(233, 30, 140, 0.16) 0%, transparent 68%); pointer-events: none; }
+.hero-glow3 { position: absolute; top: 30%; left: 50%; transform: translateX(-50%); width: 900px; height: 300px; background: radial-gradient(ellipse, rgba(124, 58, 237, 0.12) 0%, transparent 70%); pointer-events: none; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(245, 197, 0, 0.14); border: 1px solid rgba(245, 197, 0, 0.28); padding: 6px 16px; border-radius: 50px; font-size: 0.82rem; font-weight: 700; color: var(--yellow); margin-bottom: 22px; }
+.hero-title { color: #fff; margin-bottom: 18px; position: relative; z-index: 2; }
+.hero-title em { color: transparent; background: var(--grad); -webkit-background-clip: text; background-clip: text; font-style: normal; }
+.hero-sub { color: rgba(255, 255, 255, 0.62); font-size: 1.1rem; max-width: 520px; margin: 0 auto 36px; position: relative; z-index: 2; }
+.cards-wrap { margin-top: -56px; position: relative; z-index: 10; }
+.contact-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.contact-card { background: #fff; border-radius: var(--r); padding: 40px 30px 34px; border: 1.5px solid var(--border); transition: all 0.28s; position: relative; overflow: hidden; text-align: center; }
+.contact-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--grad); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+.contact-card:hover { transform: translateY(-6px); box-shadow: var(--shadowlg); border-color: transparent; }
+.contact-card:hover::after { transform: scaleX(1); }
+.cc-icon { width: 64px; height: 64px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.8rem; flex-shrink: 0; transition: transform 0.25s; }
+.contact-card:hover .cc-icon { transform: scale(1.08); }
+.contact-card:nth-child(1) .cc-icon { background: #EDE9FE; }
+.contact-card:nth-child(2) .cc-icon { background: #FCE7F3; }
+.contact-card:nth-child(3) .cc-icon { background: #FEF3C7; }
+.contact-card h3 { margin-bottom: 10px; font-size: 1.15rem; }
+.contact-card p { font-size: 0.9rem; margin-bottom: 24px; max-width: 240px; margin-left: auto; margin-right: auto; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.form-image { border-radius: 20px; overflow: hidden; box-shadow: var(--shadowlg); position: relative; }
+.form-image img { width: 100%; height: 480px; object-fit: cover; object-position: center top; }
+.form-image-badge { position: absolute; bottom: 24px; left: 24px; right: 24px; background: rgba(20, 7, 0, 0.72); backdrop-filter: blur(12px); border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; gap: 14px; border: 1px solid rgba(255, 255, 255, 0.1); }
+.fib-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); flex-shrink: 0; box-shadow: 0 0 8px rgba(22, 163, 74, 0.6); }
+.fib-text strong { display: block; font-size: 0.9rem; font-weight: 700; color: #fff; }
+.fib-text span { font-size: 0.76rem; color: rgba(255, 255, 255, 0.55); }
+.contact-form { margin-top: 8px; display: flex; flex-direction: column; gap: 18px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field label { font-size: 0.85rem; font-weight: 700; color: var(--dark); }
+.form-field label span { color: var(--pink); }
+.form-field input, .form-field textarea, .form-field select { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.95rem; padding: 13px 16px; border-radius: 10px; border: 1.5px solid var(--border); background: #fff; color: var(--dark); transition: border-color 0.2s, box-shadow 0.2s; outline: none; resize: none; }
+.form-field input:focus, .form-field textarea:focus, .form-field select:focus { border-color: var(--purple); box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1); }
+.form-field input::placeholder, .form-field textarea::placeholder { color: #C4A98A; }
+.form-field textarea { min-height: 130px; line-height: 1.6; }
+.form-field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237A5C48' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; cursor: pointer; }
+.form-submit { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.form-note { font-size: 0.78rem; color: var(--muted); }
+.form-success { display: none; text-align: center; padding: 40px 24px; background: #f0fdf4; border-radius: var(--r); border: 1.5px solid #bbf7d0; }
+.form-success.show { display: block; }
+.fs-icon { font-size: 3rem; margin-bottom: 12px; }
+.fs-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+.fs-sub { font-size: 0.95rem; color: var(--muted); }
+.direct-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 52px; }
+.direct-item { display: flex; align-items: flex-start; gap: 16px; padding: 24px 22px; background: rgba(255, 255, 255, 0.1); border-radius: var(--r); border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.25s; }
+.direct-item:hover { background: rgba(255, 255, 255, 0.15); }
+.di-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--grad); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+.di-text strong { display: block; font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 3px; }
+.di-text a { font-size: 0.88rem; color: #fff; font-weight: 600; transition: color 0.2s; }
+.di-text a:hover { color: var(--yellow); }
+.di-text span { font-size: 0.78rem; color: rgba(255, 255, 255, 0.6); display: block; margin-top: 2px; }
+.sec-head { text-align: center; margin-bottom: 52px; }
+.faq-list { max-width: 740px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+.faq-item { background: #fff; border-radius: 11px; border: 1.5px solid var(--border); overflow: hidden; transition: border-color 0.2s; }
+.faq-item.open { border-color: var(--purple); }
+.faq-q { width: 100%; background: none; border: none; padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; text-align: left; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.97rem; font-weight: 700; color: var(--dark); }
+.faq-icon { width: 26px; height: 26px; border-radius: 50%; background: var(--cream2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.25s; color: var(--purple); font-size: 1.1rem; }
+.faq-item.open .faq-icon { transform: rotate(45deg); background: var(--purple); color: #fff; }
+.faq-ans { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.faq-ans-in { padding: 0 22px 18px; font-size: 0.92rem; }
+.reveal { opacity: 0; transform: translateY(22px); transition: all 0.6s ease; }
+.reveal.vis { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+  .contact-cards { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-image { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+  .direct-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 40));
+
+const form = document.getElementById('contactForm');
+const formSuccess = document.getElementById('formSuccess');
+
+form?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData);
+
+  // TODO: Enviar para endpoint (Formspree, etc)
+  console.log('Form data:', data);
+
+  form.style.display = 'none';
+  formSuccess?.classList.add('show');
+});
+
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item')!;
+    const ans = item.querySelector('.faq-ans') as HTMLElement;
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      (i.querySelector('.faq-ans') as HTMLElement).style.maxHeight = '';
+    });
+    if (!open) {
+      item.classList.add('open');
+      ans.style.maxHeight = ans.scrollHeight + 'px';
+    }
+  });
+});
+
+const rv = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      (e.target as HTMLElement).classList.add('vis');
+      rv.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.reveal').forEach(el => rv.observe(el));
+</script>

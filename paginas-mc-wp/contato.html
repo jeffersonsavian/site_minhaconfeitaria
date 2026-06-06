@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contato — Minha Confeitaria App</title>
+<link rel="icon" href="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/logo-mini.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#FFF9F2;color:#1C0A00;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+:root{
+  --cream:#FFF9F2;--cream2:#FFF1E3;--dark:#140700;--dark2:#271000;
+  --purple:#7C3AED;--pink:#E91E8C;--yellow:#F5C500;--coral:#FF6B35;--green:#16A34A;
+  --muted:#7A5C48;--border:#F0DCC8;
+  --grad:linear-gradient(135deg,#7C3AED,#E91E8C);
+  --shadow:0 4px 32px rgba(28,10,0,.1);--shadowlg:0 12px 64px rgba(28,10,0,.18);
+  --r:16px;
+}
+h1,h2{font-family:'Playfair Display',Georgia,serif;line-height:1.12}
+h1{font-size:clamp(2.8rem,5vw,4.4rem);font-weight:900}
+h2{font-size:clamp(1.9rem,3.2vw,2.9rem);font-weight:700}
+h3{font-size:1.2rem;font-weight:700;line-height:1.3}
+p{color:var(--muted);font-size:1rem;line-height:1.75}
+.container{max-width:1200px;margin:0 auto;padding:0 28px}
+.section{padding:96px 0}
+.s-dark{background:var(--dark);color:#fff}
+.s-dark p{color:rgba(255,255,255,.62)}
+.s-tint{background:var(--cream2)}
+.tag{display:inline-block;padding:5px 14px;border-radius:50px;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;border:none;transition:all .2s;text-decoration:none;white-space:nowrap}
+.btn-grad{background:var(--grad);color:#fff;box-shadow:0 4px 24px rgba(124,58,237,.35)}
+.btn-grad:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(124,58,237,.45)}
+.btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.35)}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.btn-outline{background:transparent;color:var(--dark);border:2px solid var(--border)}
+.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
+.btn-lg{padding:18px 36px;font-size:1.1rem}
+.btn-sm{padding:10px 22px;font-size:.88rem}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:all .3s;padding:18px 0;background:rgba(20,7,0,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+nav.sc{background:rgba(255,249,242,.93);padding:11px 0;box-shadow:0 1px 24px rgba(28,10,0,.07)}
+.nav-in{display:flex;align-items:center;max-width:1200px;margin:0 auto;padding:0 28px}
+.nav-logo img{height:50px}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;margin-left:auto}
+.nav-links a{font-weight:600;font-size:.92rem;color:rgba(255,255,255,.88);transition:color .2s}
+nav.sc .nav-links a{color:var(--dark)}
+.nav-links a:hover{color:var(--pink)}
+.nav-links a.active{color:var(--pink)}
+nav.sc .nav-links a.active{color:var(--purple)}
+.nav-ctas{display:flex;gap:10px;margin-left:24px}
+a.nav-login{padding:8px 18px;border-radius:50px;font-weight:700;font-size:.88rem;color:#fff;border:1.5px solid rgba(255,255,255,.4);transition:all .2s}
+nav.sc a.nav-login{color:var(--dark);border-color:var(--border)}
+a.nav-login:hover{background:rgba(255,255,255,.12)}
+a.nav-cta{padding:8px 20px;border-radius:50px;background:var(--grad);font-weight:700;font-size:.88rem;color:#fff;box-shadow:0 4px 14px rgba(124,58,237,.32);transition:all .2s}
+a.nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(124,58,237,.44)}
+
+/* HERO CONTATO */
+#hero{background:var(--dark);position:relative;overflow:hidden;padding:160px 0 100px;text-align:center}
+.hero-glow{position:absolute;top:-10%;right:10%;width:600px;height:600px;background:radial-gradient(circle,rgba(124,58,237,.26) 0%,transparent 68%);pointer-events:none}
+.hero-glow2{position:absolute;bottom:-10%;left:5%;width:400px;height:400px;background:radial-gradient(circle,rgba(233,30,140,.16) 0%,transparent 68%);pointer-events:none}
+.hero-glow3{position:absolute;top:30%;left:50%;transform:translateX(-50%);width:900px;height:300px;background:radial-gradient(ellipse,rgba(124,58,237,.12) 0%,transparent 70%);pointer-events:none}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(245,197,0,.14);border:1px solid rgba(245,197,0,.28);padding:6px 16px;border-radius:50px;font-size:.82rem;font-weight:700;color:var(--yellow);margin-bottom:22px}
+.hero-title{color:#fff;margin-bottom:18px;position:relative;z-index:2}
+.hero-title em{color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text;font-style:normal}
+.hero-sub{color:rgba(255,255,255,.62);font-size:1.1rem;max-width:520px;margin:0 auto 36px;position:relative;z-index:2}
+.hero-breadcrumb{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.82rem;color:rgba(255,255,255,.4);position:relative;z-index:2}
+.hero-breadcrumb a{color:rgba(255,255,255,.55);transition:color .2s}
+.hero-breadcrumb a:hover{color:#fff}
+.hero-breadcrumb span{color:rgba(255,255,255,.25)}
+
+/* CONTACT CARDS */
+.cards-wrap{margin-top:-56px;position:relative;z-index:10}
+.contact-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.contact-card{background:#fff;border-radius:var(--r);padding:40px 30px 34px;border:1.5px solid var(--border);transition:all .28s;position:relative;overflow:hidden;text-align:center}
+.contact-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.contact-card:hover{transform:translateY(-6px);box-shadow:var(--shadowlg);border-color:transparent}
+.contact-card:hover::after{transform:scaleX(1)}
+.cc-icon{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.8rem;flex-shrink:0;transition:transform .25s}
+.contact-card:hover .cc-icon{transform:scale(1.08)}
+.contact-card:nth-child(1) .cc-icon{background:#EDE9FE}
+.contact-card:nth-child(2) .cc-icon{background:#FCE7F3}
+.contact-card:nth-child(3) .cc-icon{background:#FEF3C7}
+.contact-card h3{margin-bottom:10px;font-size:1.15rem}
+.contact-card p{font-size:.9rem;margin-bottom:24px;max-width:240px;margin-left:auto;margin-right:auto}
+
+/* FORM SECTION */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.form-image{border-radius:20px;overflow:hidden;box-shadow:var(--shadowlg);position:relative}
+.form-image img{width:100%;height:480px;object-fit:cover;object-position:center top}
+.form-image-badge{position:absolute;bottom:24px;left:24px;right:24px;background:rgba(20,7,0,.72);backdrop-filter:blur(12px);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:14px;border:1px solid rgba(255,255,255,.1)}
+.fib-dot{width:10px;height:10px;border-radius:50%;background:var(--green);flex-shrink:0;box-shadow:0 0 8px rgba(22,163,74,.6)}
+.fib-text strong{display:block;font-size:.9rem;font-weight:700;color:#fff}
+.fib-text span{font-size:.76rem;color:rgba(255,255,255,.55)}
+.form-content{}
+.form-content .tag{background:#EDE9FE;color:var(--purple)}
+.contact-form{margin-top:8px;display:flex;flex-direction:column;gap:18px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form-field{display:flex;flex-direction:column;gap:6px}
+.form-field label{font-size:.85rem;font-weight:700;color:var(--dark)}
+.form-field label span{color:var(--pink)}
+.form-field input,.form-field textarea,.form-field select{font-family:'Plus Jakarta Sans',sans-serif;font-size:.95rem;padding:13px 16px;border-radius:10px;border:1.5px solid var(--border);background:#fff;color:var(--dark);transition:border-color .2s,box-shadow .2s;outline:none;resize:none}
+.form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(124,58,237,.1)}
+.form-field input::placeholder,.form-field textarea::placeholder{color:#C4A98A}
+.form-field textarea{min-height:130px;line-height:1.6}
+.form-field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237A5C48' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px;cursor:pointer}
+.form-submit{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.form-note{font-size:.78rem;color:var(--muted)}
+
+/* FORM SUCCESS */
+.form-success{display:none;text-align:center;padding:40px 24px;background:#f0fdf4;border-radius:var(--r);border:1.5px solid #bbf7d0}
+.form-success.show{display:block}
+.fs-icon{font-size:3rem;margin-bottom:12px}
+.fs-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--dark);margin-bottom:8px}
+.fs-sub{font-size:.95rem;color:var(--muted)}
+
+/* DIRECT CONTACT */
+.direct-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
+.direct-item{display:flex;align-items:flex-start;gap:16px;padding:24px 22px;background:#fff;border-radius:var(--r);border:1.5px solid var(--border);transition:all .25s}
+.direct-item:hover{border-color:var(--purple);box-shadow:var(--shadow)}
+.di-icon{width:48px;height:48px;border-radius:12px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.di-text strong{display:block;font-size:.9rem;font-weight:700;color:var(--dark);margin-bottom:3px}
+.di-text a{font-size:.88rem;color:var(--purple);font-weight:600;transition:color .2s}
+.di-text a:hover{color:var(--pink)}
+.di-text span{font-size:.78rem;color:var(--muted);display:block;margin-top:2px}
+
+/* FAQ */
+.sec-head{text-align:center;margin-bottom:52px}
+.faq-list{max-width:740px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.faq-item{background:#fff;border-radius:11px;border:1.5px solid var(--border);overflow:hidden;transition:border-color .2s}
+.faq-item.open{border-color:var(--purple)}
+.faq-q{width:100%;background:none;border:none;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;font-family:'Plus Jakarta Sans',sans-serif;font-size:.97rem;font-weight:700;color:var(--dark)}
+.faq-icon{width:26px;height:26px;border-radius:50%;background:var(--cream2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s;color:var(--purple);font-size:1.1rem}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--purple);color:#fff}
+.faq-ans{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-ans-in{padding:0 22px 18px;font-size:.92rem}
+
+/* MARQUEE */
+.marquee{background:var(--yellow);padding:13px 0;overflow:hidden}
+.marquee-track{display:flex;gap:0;animation:mq 22s linear infinite;width:max-content}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mq-item{display:flex;align-items:center;gap:9px;padding:0 44px;font-weight:800;font-size:.88rem;color:var(--dark);white-space:nowrap}
+.mq-sep{color:rgba(28,10,0,.25);padding:0 0 0 44px}
+
+/* FINAL CTA */
+.cta-final{background:var(--dark);position:relative;overflow:hidden}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:360px;background:radial-gradient(ellipse,rgba(124,58,237,.28) 0%,transparent 70%);pointer-events:none}
+.cta-grid{display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;position:relative;z-index:2}
+.cta-title{color:#fff;margin-bottom:14px}
+.cta-sub{color:rgba(255,255,255,.62);margin-bottom:30px;font-size:1.05rem}
+.cta-acts{display:flex;gap:14px;flex-wrap:wrap}
+.cta-char{width:260px}
+.trust-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.trust-it{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.65)}
+.trust-dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
+
+/* FOOTER */
+footer{background:var(--dark2);color:rgba(255,255,255,.45);padding:36px 0}
+.foot-in{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px}
+.foot-logo img{height:42px;opacity:.75}
+.foot-links{display:flex;gap:24px;flex-wrap:wrap}
+.foot-links a{font-size:.82rem;transition:color .2s}
+.foot-links a:hover{color:#fff}
+.foot-copy{font-size:.8rem}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:all .6s ease}
+.reveal.vis{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .contact-cards{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .form-image{display:none}
+  .form-row{grid-template-columns:1fr}
+  .direct-grid{grid-template-columns:1fr}
+  .cta-grid{grid-template-columns:1fr}
+  .cta-char{display:none}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-in">
+    <a href="index.html" class="nav-logo"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/logo.png" alt="Minha Confeitaria App"></a>
+    <ul class="nav-links">
+      <li><a href="/funcionalidades">Funcionalidades</a></li>
+      <li><a href="/precos">Preços</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="/contato" class="active">Contato</a></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="https://app.minhaconfeitaria.com" class="nav-login">Entrar</a>
+      <a href="https://app.minhaconfeitaria.com/register" class="nav-cta">Testar Grátis</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-glow3"></div>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="hero-breadcrumb" style="margin-bottom:24px">
+      <a href="index.html">Início</a>
+      <span>›</span>
+      <span style="color:rgba(255,255,255,.7)">Contato</span>
+    </div>
+    <div class="hero-eyebrow">
+      <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+      Estamos aqui para ajudar
+    </div>
+    <h1 class="hero-title">Fale com a <em>nossa equipe</em></h1>
+    <p class="hero-sub">Seja para tirar dúvidas, suporte técnico ou parcerias — escolha o canal certo e a gente responde rápido.</p>
+  </div>
+</section>
+
+<!-- CONTACT TYPE CARDS -->
+<section style="padding:0 0 80px;background:var(--cream)">
+  <div class="container">
+    <div class="cards-wrap">
+      <div class="contact-cards">
+
+        <div class="contact-card reveal">
+          <div class="cc-icon">💼</div>
+          <h3>Área Comercial</h3>
+          <p>Versões exclusivas, parcerias, licenciamento para times ou revendas? Fale com o time comercial.</p>
+          <a href="#form" onclick="document.getElementById('assunto').value='comercial'" class="btn btn-outline btn-sm">Enviar mensagem</a>
+        </div>
+
+        <div class="contact-card reveal">
+          <div class="cc-icon">🛠️</div>
+          <h3>Suporte Técnico</h3>
+          <p>Todo o suporte técnico é prestado dentro da plataforma via Tickets. Acesse pelo seu painel.</p>
+          <a href="https://app.minhaconfeitaria.com" target="_blank" class="btn btn-outline btn-sm">Ir para a plataforma →</a>
+        </div>
+
+        <div class="contact-card reveal">
+          <div class="cc-icon">💡</div>
+          <h3>Solicite um Recurso</h3>
+          <p>Tem uma ideia de funcionalidade que tornaria seu dia a dia ainda mais fácil? Adoramos ouvir!</p>
+          <a href="#form" onclick="document.getElementById('assunto').value='sugestao'" class="btn btn-outline btn-sm">Enviar sugestão</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="mq-item">📅 No mercado desde 2017</span><span class="mq-sep">◆</span>
+    <span class="mq-item">💚 Respondemos em até 24h</span><span class="mq-sep">◆</span>
+    <span class="mq-item">💰 Suporte em Português</span><span class="mq-sep">◆</span>
+    <span class="mq-item">🚫 Sem scripts automáticos</span><span class="mq-sep">◆</span>
+    <span class="mq-item">🔒 Atendimento humanizado</span><span class="mq-sep">◆</span>
+    <span class="mq-item">📄 Suporte via Ticket na plataforma</span><span class="mq-sep">◆</span>
+    <span class="mq-item">📅 No mercado desde 2017</span><span class="mq-sep">◆</span>
+    <span class="mq-item">💚 Respondemos em até 24h</span><span class="mq-sep">◆</span>
+    <span class="mq-item">💰 Suporte em Português</span><span class="mq-sep">◆</span>
+    <span class="mq-item">🚫 Sem scripts automáticos</span><span class="mq-sep">◆</span>
+    <span class="mq-item">🔒 Atendimento humanizado</span><span class="mq-sep">◆</span>
+    <span class="mq-item">📄 Suporte via Ticket na plataforma</span><span class="mq-sep">◆</span>
+  </div>
+</div>
+
+<!-- FORM + IMAGE -->
+<section class="section" id="form">
+  <div class="container">
+    <div class="form-grid">
+
+      <!-- IMAGE -->
+      <div class="form-image reveal">
+        <img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/casal-bakery.jpg" alt="Confeiteiros felizes em sua confeitaria">
+        <div class="form-image-badge">
+          <div class="fib-dot"></div>
+          <div class="fib-text">
+            <strong>Equipe online agora</strong>
+            <span>Respondemos em até 24 horas úteis</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div class="reveal">
+        <div class="tag" style="background:#EDE9FE;color:var(--purple)">Mensagem</div>
+        <h2 style="margin-bottom:8px">Manda um<br><em style="color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text;font-style:normal">olá pra gente</em></h2>
+        <p style="margin-bottom:28px">Preencha o formulário e nossa equipe entra em contato o mais breve possível.</p>
+
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="nome">Nome <span>*</span></label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+            </div>
+            <div class="form-field">
+              <label for="email">E-mail <span>*</span></label>
+              <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="assunto">Assunto <span>*</span></label>
+            <select id="assunto" name="assunto" required>
+              <option value="" disabled selected>Selecione o assunto</option>
+              <option value="suporte">Suporte técnico</option>
+              <option value="comercial">Área comercial / parceria</option>
+              <option value="sugestao">Sugestão de recurso</option>
+              <option value="financeiro">Financeiro / cobrança</option>
+              <option value="imprensa">Imprensa</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="mensagem">Mensagem <span>*</span></label>
+            <textarea id="mensagem" name="mensagem" placeholder="Como podemos ajudar? Quanto mais detalhes, melhor!" required></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-grad btn-lg" id="submitBtn">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+              Enviar mensagem
+            </button>
+            <span class="form-note">Respondemos em até 24h úteis</span>
+          </div>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          <div class="fs-icon">🎉</div>
+          <div class="fs-title">Mensagem enviada!</div>
+          <p class="fs-sub">Obrigada pelo contato. Nossa equipe vai responder em até 24 horas úteis no e-mail informado.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DIRECT CONTACT -->
+    <div class="direct-grid">
+      <div class="direct-item reveal">
+        <div class="di-icon">✉️</div>
+        <div class="di-text">
+          <strong>E-mail</strong>
+          <a href="/cdn-cgi/l/email-protection#3754585943564358775a5e595f5654585951525e4356455e561954585a"><span class="__cf_email__" data-cfemail="0764686973667368476a6e696f6664686961626e7366756e662964686a">[email&#160;protected]</span></a>
+          <span>Respondemos em até 24h úteis</span>
+        </div>
+      </div>
+      <div class="direct-item reveal">
+        <div class="di-icon">💬</div>
+        <div class="di-text">
+          <strong>WhatsApp</strong>
+          <a href="https://wa.me/5511999999999" target="_blank">(11) 9 9999-9999</a>
+          <span>Seg a Sex, 9h–18h (horário de Brasília)</span>
+        </div>
+      </div>
+      <div class="direct-item reveal">
+        <div class="di-icon">🎫</div>
+        <div class="di-text">
+          <strong>Tickets na plataforma</strong>
+          <a href="https://app.minhaconfeitaria.com" target="_blank">app.minhaconfeitaria.com</a>
+          <span>Para clientes ativos — suporte prioritário</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section s-tint" id="faq">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="tag" style="background:#EDE9FE;color:var(--purple)">FAQ</div>
+      <h2>Perguntas Frequentes</h2>
+      <p style="max-width:400px;margin:10px auto 0">As dúvidas mais comuns antes de começar — e as respostas diretas.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">Como terei acesso à Minha Confeitaria App? <span class="faq-icon">+</span></button>
+        <div class="faq-ans"><div class="faq-ans-in">O acesso é feito pela página de login em <strong>app.minhaconfeitaria.com</strong>. Todo o sistema é online — não há instalação. Recomendamos o Google Chrome para melhor desempenho.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Quais são as formas de pagamento? <span class="faq-icon">+</span></button>
+        <div class="faq-ans"><div class="faq-ans-in">Pagamento processado pela <strong>Hotmart</strong>. Aceitamos cartão de crédito (acesso imediato), débito bancário (acesso imediato) e boleto bancário (acesso em até 3 dias úteis após confirmação).</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">E se eu não gostar? Tenho garantia? <span class="faq-icon">+</span></button>
+        <div class="faq-ans"><div class="faq-ans-in">Sim! 14 dias de teste grátis sem cartão para experimentar o PRO completo. Após assinar, se não gostar por qualquer motivo, reembolso em até 7 dias — sem burocracia.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">O que acontece se eu não renovar? <span class="faq-icon">+</span></button>
+        <div class="faq-ans"><div class="faq-ans-in">Sua conta migra automaticamente para o plano gratuito. Você não perde o acesso nem seus dados — apenas as funcionalidades PRO como pedidos, clientes e fluxo de caixa.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Como acesso o suporte técnico? <span class="faq-icon">+</span></button>
+        <div class="faq-ans"><div class="faq-ans-in">Todo o suporte técnico é prestado dentro da plataforma via sistema de Tickets. Acesse sua conta em <strong>app.minhaconfeitaria.com</strong>, vá até a seção de Suporte e abra um ticket — nossa equipe responde com prioridade.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Posso usar no celular? <span class="faq-icon">+</span></button>
+        <div class="faq-ans"><div class="faq-ans-in">Sim! O sistema é 100% online e funciona em qualquer dispositivo com navegador — computador, tablet ou celular. Recomendamos o Google Chrome.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Não moro no Brasil. Posso utilizar? <span class="faq-icon">+</span></button>
+        <div class="faq-ans"><div class="faq-ans-in">Sim! O sistema está disponível para uso em qualquer país. Hoje a interface é 100% em Português do Brasil; suporte a outros idiomas está no roadmap.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section cta-final">
+  <div class="cta-glow"></div>
+  <div class="container">
+    <div class="cta-grid">
+      <div class="reveal">
+        <h2 class="cta-title">Pronta para conhecer<br>o seu <em style="color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text;font-style:normal">lucro real?</em></h2>
+        <p class="cta-sub">Comece de graça, sem cartão, sem compromisso. Se crescer, o sistema já está lá — esperando por você.</p>
+        <div class="cta-acts">
+          <a href="https://app.minhaconfeitaria.com/register" class="btn btn-grad btn-lg">Testar Grátis por 14 dias →</a>
+          <a href="/cdn-cgi/l/email-protection#096a66677d687d664964606761686a66676f6c607d687b6068276a6664" class="btn btn-ghost btn-lg">Falar com a equipe</a>
+        </div>
+        <div class="trust-row" style="margin-top:26px">
+          <div class="trust-it"><span class="trust-dot"></span>Sem cartão de crédito</div>
+          <div class="trust-it"><span class="trust-dot"></span>14 dias no PRO grátis</div>
+          <div class="trust-it"><span class="trust-dot"></span>Garantia de 7 dias</div>
+        </div>
+      </div>
+      <img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/apontando.png" alt="" class="cta-char" style="margin-bottom: -115px; transform: scaleX(-1);" aria-hidden="true">
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-in">
+      <div class="foot-logo"><img src="https://minhaconfeitaria.com.br/wp-content/uploads/2026/05/logo.png" alt="Minha Confeitaria App"></div>
+      <div class="foot-links">
+        <a href="https://minhaconfeitaria.com.br/politica-de-privacidade/">Política de Privacidade</a>
+        <a href="https://minhaconfeitaria.com.br/termos-de-uso/">Termos de Uso</a>
+        <a href="https://minhaconfeitaria.com.br/aviso-legal/">Aviso Legal</a>
+        <a href="mailto:contato@minhaconfeitaria.com">Contato</a>
+      </div>
+      <div class="foot-copy">Copyright © 2026 Minha Confeitaria · Todos os Direitos Reservados</div>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// NAV SCROLL
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 40));
+
+// SMOOTH SCROLL para links com âncora
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY - 88;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+// SCROLL REVEAL
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
+  });
+}, { threshold: .1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// FAQ
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const ans = item.querySelector('.faq-ans');
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-ans').style.maxHeight = null;
+    });
+    if (!open) { item.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
+  });
+});
+
+// FORM SUBMIT (mock — conectar ao backend real)
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const nome    = document.getElementById('nome').value.trim();
+  const email   = document.getElementById('email').value.trim();
+  const assunto = document.getElementById('assunto').value;
+  const msg     = document.getElementById('mensagem').value.trim();
+
+  if (!nome || !email || !assunto || !msg) {
+    // Highlight empty fields
+    [['nome', nome], ['email', email], ['assunto', assunto], ['mensagem', msg]].forEach(([id, val]) => {
+      const el = document.getElementById(id);
+      if (!val) {
+        el.style.borderColor = '#E91E8C';
+        el.addEventListener('input', () => el.style.borderColor = '', { once: true });
+        el.addEventListener('change', () => el.style.borderColor = '', { once: true });
+      }
+    });
+    return;
+  }
+
+  btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin .8s linear infinite"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Enviando…';
+  btn.disabled = true;
+
+  // Envio real para o n8n
+  try {
+    const response = await fetch('https://hook.decisaodigital.com.br/webhook/47848a8d-c68e-4b5f-8d37-95398bc8698c', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nome, email, assunto, mensagem: msg })
+    });
+
+    if (!response.ok) throw new Error('Erro no envio');
+
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').classList.add('show');
+
+  } catch (error) {
+    btn.innerHTML = 'Enviar Mensagem'; // restaura o texto original do botão
+    btn.disabled = false;
+    alert('Houve um erro ao enviar. Tente novamente.');
+  }
+
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('formSuccess').classList.add('show');
+});
+</script>
+
+<style>
+@keyframes spin { from { transform: rotate(0deg) } to { transform: rotate(360deg) } }
+</style>
+
+<!-- React + Tweaks -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+const { TweaksPanel, TweakSection, TweakColor, TweakToggle, useTweaks } = window;
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accent": "#7C3AED",
+  "showWhatsApp": true
+}/*EDITMODE-END*/;
+
+function ContactTweaks() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  React.useEffect(() => {
+    const r = document.documentElement;
+    r.style.setProperty('--purple', t.accent);
+    r.style.setProperty('--grad', `linear-gradient(135deg,${t.accent},#E91E8C)`);
+    const wa = document.querySelector('.direct-item:nth-child(2)');
+    if (wa) wa.style.display = t.showWhatsApp ? '' : 'none';
+  }, [t]);
+
+  return (
+    <TweaksPanel title="Tweaks">
+      <TweakSection title="Cor de destaque">
+        <TweakColor label="Accent" id="accent" value={t.accent}
+          options={['#7C3AED', '#E91E8C', '#FF6B35', '#16A34A', '#0EA5E9']}
+          onChange={v => setTweak('accent', v)} />
+      </TweakSection>
+      <TweakSection title="Contatos diretos">
+        <TweakToggle label="Mostrar WhatsApp" id="showWhatsApp" value={t.showWhatsApp}
+          onChange={v => setTweak('showWhatsApp', v)} />
+      </TweakSection>
+    </TweaksPanel>
+  );
+}
+
+const root = document.createElement('div');
+document.body.appendChild(root);
+ReactDOM.createRoot(root).render(<ContactTweaks />);
+</script>
+
+</body>
+</html>
