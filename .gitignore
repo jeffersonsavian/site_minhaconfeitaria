@@ -1,5 +1,6 @@
 # build
-dist/
+# dist/ é versionado de propósito: o ServerAvatar serve dist/ direto (sem buildar no servidor).
+# O hook pre-push reconstrói dist/ automaticamente antes de cada push.
 .astro/
 
 # deps

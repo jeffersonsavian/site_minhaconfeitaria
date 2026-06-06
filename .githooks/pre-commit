@@ -1,0 +1,14 @@
+#!/bin/sh
+# Reconstrói o site (Astro) e inclui dist/ no commit.
+# Assim o dist/ versionado — que o ServerAvatar serve direto — nunca fica desatualizado.
+# Para pular em algum commit pontual: git commit --no-verify
+
+echo "[pre-commit] Buildando o site (npm run build)..."
+npm run build
+if [ $? -ne 0 ]; then
+  echo "[pre-commit] Build FALHOU — commit abortado. Corrija o erro acima e tente de novo."
+  exit 1
+fi
+
+git add dist
+echo "[pre-commit] dist/ reconstruído e adicionado ao commit."
