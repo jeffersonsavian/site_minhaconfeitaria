@@ -235,10 +235,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 40));
 
-// Webhook do n8n que recebe os contatos.
-// IMPORTANTE: troque "/webhook-test/" por "/webhook/" quando ativar o workflow em produção
-// (a URL "webhook-test" só funciona com o editor do n8n em modo "Listen", e dispara 1x).
-const N8N_ENDPOINT = 'https://nnode.decisaodigital.com.br/webhook-test/be05d291-7ea5-43a4-a353-8d66fb3b5c5c';
+// Webhook do n8n (produção) que recebe os contatos.
+// Requer CORS liberado no nó Webhook do n8n para https://minhaconfeitaria.com.br.
+const N8N_ENDPOINT = 'https://nnode.decisaodigital.com.br/webhook/be05d291-7ea5-43a4-a353-8d66fb3b5c5c';
 
 const form = document.getElementById('contactForm') as HTMLFormElement | null;
 const formSuccess = document.getElementById('formSuccess');
