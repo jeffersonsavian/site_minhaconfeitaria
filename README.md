@@ -48,8 +48,18 @@ npm run preview  # serve o build
    A cada `git push` na branch `main`, o GitHub chama o webhook → ServerAvatar faz
    `git pull` + roda o deployment script → site atualizado.
 
+### Formulário de contato → n8n
+O form de `/contato` envia um `POST` JSON direto para um webhook do **n8n**
+(constante `N8N_ENDPOINT` no `<script>` de `src/pages/contato.astro`). Payload:
+`name, email, phone, subject, message, origem, pagina, enviadoEm`. Tem honeypot
+anti-spam (`_gotcha`) e estados de enviando/sucesso/erro.
+
+Para funcionar em produção:
+1. Trocar `…/webhook-test/…` por `…/webhook/…` na constante (a URL `webhook-test`
+   só responde com o editor do n8n em modo *Listen* e dispara uma vez).
+2. No **nó Webhook** do n8n, habilitar **CORS / Allowed Origins** com
+   `https://minhaconfeitaria.com.br` (senão o navegador bloqueia o envio).
+3. Método `POST`, e responder 2xx para o site mostrar a tela de sucesso.
+
 ### Pendências para o cliente
-- **Formulário de contato** (`/contato`): o `action` está com placeholder
-  (`<!-- TODO: configurar endpoint de formulário -->`). Configure Formspree,
-  Netlify Forms ou um endpoint próprio.
 - **WhatsApp**: o número `5511999999999` veio do HTML original — substitua pelo real.

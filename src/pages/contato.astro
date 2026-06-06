@@ -74,9 +74,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <label>Mensagem <span>*</span></label>
             <textarea name="message" placeholder="Conte-nos como podemos ajudar..." required></textarea>
           </div>
+          <!-- honeypot anti-spam: humanos não preenchem (fica escondido) -->
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp-field">
+          <div class="form-error" id="formError" role="alert"></div>
           <div class="form-submit">
-            <button type="submit" class="btn btn-grad">Enviar Mensagem</button>
-            <span class="form-note"><!-- TODO: configurar endpoint de formulário --></span>
+            <button type="submit" class="btn btn-grad" id="formSubmit">Enviar Mensagem</button>
           </div>
         </form>
         <div class="form-success" id="formSuccess">
@@ -193,6 +195,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .form-note { font-size: 0.78rem; color: var(--muted); }
 .form-success { display: none; text-align: center; padding: 40px 24px; background: #f0fdf4; border-radius: var(--r); border: 1.5px solid #bbf7d0; }
 .form-success.show { display: block; }
+.hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.form-error { display: none; margin-bottom: 14px; padding: 12px 16px; background: #fef2f2; border: 1.5px solid #fecaca; border-radius: 12px; color: #b91c1c; font-size: 0.9rem; }
+.form-error.show { display: block; }
+.btn[disabled] { opacity: 0.6; cursor: not-allowed; pointer-events: none; }
 .fs-icon { font-size: 3rem; margin-bottom: 12px; }
 .fs-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
 .fs-sub { font-size: 0.95rem; color: var(--muted); }
@@ -229,19 +235,57 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 40));
 
-const form = document.getElementById('contactForm');
+// Webhook do n8n que recebe os contatos.
+// IMPORTANTE: troque "/webhook-test/" por "/webhook/" quando ativar o workflow em produção
+// (a URL "webhook-test" só funciona com o editor do n8n em modo "Listen", e dispara 1x).
+const N8N_ENDPOINT = 'https://nnode.decisaodigital.com.br/webhook-test/be05d291-7ea5-43a4-a353-8d66fb3b5c5c';
+
+const form = document.getElementById('contactForm') as HTMLFormElement | null;
 const formSuccess = document.getElementById('formSuccess');
+const formError = document.getElementById('formError');
+const formSubmit = document.getElementById('formSubmit') as HTMLButtonElement | null;
 
 form?.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData);
+  if (!form) return;
 
-  // TODO: Enviar para endpoint (Formspree, etc)
-  console.log('Form data:', data);
+  const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
 
-  form.style.display = 'none';
-  formSuccess?.classList.add('show');
+  // Honeypot: se preenchido, é bot — finge sucesso e não envia.
+  if (data._gotcha) {
+    form.style.display = 'none';
+    formSuccess?.classList.add('show');
+    return;
+  }
+  delete data._gotcha;
+
+  formError?.classList.remove('show');
+  const originalLabel = formSubmit?.textContent;
+  if (formSubmit) { formSubmit.disabled = true; formSubmit.textContent = 'Enviando...'; }
+
+  try {
+    const res = await fetch(N8N_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...data,
+        origem: 'site/contato',
+        pagina: location.href,
+        enviadoEm: new Date().toISOString(),
+      }),
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+
+    form.style.display = 'none';
+    formSuccess?.classList.add('show');
+  } catch (err) {
+    console.error('Falha ao enviar contato:', err);
+    if (formError) {
+      formError.textContent = 'Não foi possível enviar agora. Tente novamente ou escreva para contato@minhaconfeitaria.com.';
+      formError.classList.add('show');
+    }
+    if (formSubmit) { formSubmit.disabled = false; formSubmit.textContent = originalLabel || 'Enviar Mensagem'; }
+  }
 });
 
 document.querySelectorAll('.faq-q').forEach(btn => {
