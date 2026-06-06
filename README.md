@@ -27,26 +27,31 @@ npm run preview  # serve o build
 - `public/robots.txt` aponta para o sitemap.
 - `site` definido em `astro.config.mjs` como `https://minhaconfeitaria.com.br` (necessário para canonical/sitemap corretos).
 
-## Deploy no ServerAvatar (build no servidor + autopull)
+## Estratégia de deploy
 
-1. **Aplicação**: crie uma aplicação do tipo **Static / PHP** (só precisa servir arquivos).
-2. **Git**: em *Application → Git*, conecte ao repositório
+O **build é feito localmente** e a pasta `dist/` é **versionada no Git**. O ServerAvatar
+apenas serve `dist/` — **não precisa de Node nem de build no servidor**. Um hook
+`pre-commit` (em `.githooks/`) reconstrói o `dist/` e o inclui em todo commit, então o
+fluxo de trabalho continua só `git commit` + `git push`, sem risco de subir desatualizado.
+
+> Para clonar em outra máquina e manter o hook ativo, rode uma vez:
+> `git config core.hooksPath .githooks`
+
+## Deploy no ServerAvatar (autopull, sem build no servidor)
+
+1. **Aplicação**: crie uma aplicação **PHP/Static** (só serve arquivos — o aviso de
+   extensões PHP/WordPress pode ser ignorado; o site é HTML puro).
+2. **Git**: conecte ao repositório
    `git@github.com:jeffersonsavian/site_minhaconfeitaria.git`, branch `main`.
    - Copie a **Deploy Key** que o ServerAvatar gera e cole em
      *GitHub → repo → Settings → Deploy keys → Add deploy key* (read-only basta).
-3. **Node**: garanta Node 18+ no servidor (o projeto usa Node 24 — veja `.nvmrc`).
-4. **Deployment script** (roda a cada deploy):
-   ```bash
-   npm ci
-   npm run build
-   ```
-5. **Web root / Document root**: aponte para a subpasta **`dist`** do repositório
-   (ex.: `/home/<app>/site_minhaconfeitaria/dist`). É essa pasta que contém o HTML final.
-6. **Auto Deploy (autopull)**: ative *Auto Deployment* e copie a **Webhook URL** do
+3. **Deployment Script**: **deixe vazio** (o `dist/` já vem pronto no repositório).
+4. **Custom Webroot**: `dist` (faz o servidor servir `…/public_html/dist`).
+5. **Auto Deploy (autopull)**: ative *Auto Deployment* e copie a **Webhook URL** do
    ServerAvatar para *GitHub → repo → Settings → Webhooks → Add webhook*
    (Content type `application/json`, evento *Just the push event*).
    A cada `git push` na branch `main`, o GitHub chama o webhook → ServerAvatar faz
-   `git pull` + roda o deployment script → site atualizado.
+   `git pull` do `dist/` já buildado → site atualizado.
 
 ### Formulário de contato → n8n
 O form de `/contato` envia um `POST` JSON direto para um webhook do **n8n**
