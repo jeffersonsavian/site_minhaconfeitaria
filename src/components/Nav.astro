@@ -1,9 +1,11 @@
 ---
+import { Image } from 'astro:assets';
+import logoNav from '../assets/logo-nav.png';
 ---
 
 <nav id="nav">
   <div class="nav-in">
-    <a href="/" class="nav-logo"><img src="/images/logo-nav.png" alt="Minha Confeitaria App"></a>
+    <a href="/" class="nav-logo"><Image src={logoNav} alt="Minha Confeitaria App" width={137} height={100} densities={[2]} format="webp" loading="eager" /></a>
     <ul class="nav-links">
       <li><a href="/funcionalidades">Funcionalidades</a></li>
       <li><a href="/precos">Preços</a></li>

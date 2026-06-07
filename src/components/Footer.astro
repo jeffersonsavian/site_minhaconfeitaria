@@ -1,10 +1,12 @@
 ---
+import { Image } from 'astro:assets';
+import logoNav from '../assets/logo-nav.png';
 ---
 
 <footer>
   <div class="container">
     <div class="foot-in">
-      <div class="foot-logo"><img src="/images/logo-nav.png" alt="Minha Confeitaria App"></div>
+      <div class="foot-logo"><Image src={logoNav} alt="Minha Confeitaria App" width={115} height={84} densities={[2]} format="webp" /></div>
       <div class="foot-links">
         <a href="/politica-de-privacidade">Política de Privacidade</a>
         <a href="/termos-de-uso">Termos de Uso</a>

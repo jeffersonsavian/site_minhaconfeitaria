@@ -1,5 +1,28 @@
 /* Global CSS - Shared across all pages */
 
+/* Self-hosted variable fonts (latin) — substituem o Google Fonts CDN */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 800;
+  src: url('/fonts/plus-jakarta-sans-var.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700 900;
+  src: url('/fonts/playfair-display-var.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 700;
+  src: url('/fonts/playfair-display-italic-var.woff2') format('woff2');
+}
+
 *,*::before,*::after {
   box-sizing: border-box;
   margin: 0;
