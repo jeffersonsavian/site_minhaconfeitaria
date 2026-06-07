@@ -1,0 +1,22 @@
+---
+/**
+ * Rota dos pretty links: /go/<slug>.
+ *
+ * Gera no build uma página de redirect por entrada de src/redirects.config.ts.
+ * O RedirectPage cuida do noindex, do fallback sem-JS e do redirect com UTMs.
+ * Não edite aqui — os links ficam em src/redirects.config.ts.
+ */
+import { redirects } from '../../redirects.config';
+import RedirectPage from 'web-kit/redirects/RedirectPage.astro';
+
+export function getStaticPaths() {
+  return Object.entries(redirects).map(([slug, destination]) => ({
+    params: { slug },
+    props: { destination },
+  }));
+}
+
+const { destination } = Astro.props;
+---
+
+<RedirectPage destination={destination} />

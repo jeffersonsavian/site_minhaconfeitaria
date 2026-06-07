@@ -4,6 +4,8 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import LgpdBanner from 'web-kit/components/LgpdBanner.astro';
 import MetaPixel from 'web-kit/components/MetaPixel.astro';
+import Tracking from 'web-kit/components/Tracking.astro';
+import UtmForwarder from 'web-kit/components/UtmForwarder.astro';
 import { config } from '../web-kit.config';
 import '../styles/global.css';
 
@@ -28,5 +30,7 @@ const { title, description, canonical, image } = Astro.props;
   <Footer />
   <LgpdBanner lgpd={config.lgpd} siteId={config.siteId} />
   {config.pixel?.enabled && <MetaPixel pixel={config.pixel} siteId={config.siteId} />}
+  {config.tracking && <Tracking tracking={config.tracking} siteId={config.siteId} />}
+  {config.utm && <UtmForwarder utm={config.utm} />}
 </body>
 </html>

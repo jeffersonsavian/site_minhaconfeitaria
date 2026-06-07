@@ -1,0 +1,1 @@
+import{i as o}from"./utm-client.CX2m1xk_.js";(function(){const t=document.getElementById("wk-utm-cfg");if(!t)return;const e=JSON.parse(t.textContent),n=o(e);document.addEventListener("astro:before-swap",()=>{n()})})();

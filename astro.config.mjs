@@ -11,6 +11,7 @@ export default defineConfig({
     format: 'directory',
   },
   integrations: [
-    sitemap(),
+    // Pretty links /go/* são noindex e não entram no sitemap.
+    sitemap({ filter: (page) => !page.includes('/go/') }),
   ],
 });

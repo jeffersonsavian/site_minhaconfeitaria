@@ -1,0 +1,27 @@
+{
+  "siteId": "minhaconfeitaria",
+  "lgpd": {
+    "mode": "soft",
+    "consentWebhookUrl": "",
+    "texts": {
+      "privacyPolicyUrl": "/politica-de-privacidade"
+    }
+  },
+  "pixel": {
+    "enabled": false,
+    "pixelId": "",
+    "capiWebhookUrl": "",
+    "autoPageView": true
+  },
+  "ads": {
+    "enabled": false,
+    "provider": "adx",
+    "clientId": "",
+    "slots": {
+      "meio-artigo": "Content1"
+    }
+  },
+  "utm": {
+    "enabled": true
+  }
+}
