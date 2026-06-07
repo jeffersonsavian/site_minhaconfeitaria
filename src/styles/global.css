@@ -222,6 +222,7 @@ nav.sc {
 
 .nav-logo img {
   height: 50px;
+  width: auto;
 }
 
 .nav-links {
@@ -305,6 +306,7 @@ footer {
 
 .foot-logo img {
   height: 42px;
+  width: auto;
   opacity: 0.75;
 }
 
