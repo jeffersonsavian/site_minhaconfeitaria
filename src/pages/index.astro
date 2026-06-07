@@ -1,5 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import mcDashboard from '../assets/MC-DASHBOARD.png';
+import mcLove from '../assets/MC-Love.png';
+import mcMeusPedidos from '../assets/MC-MEUSPEDIDOS.png';
+import mcSurpresa from '../assets/Mc-Supresa.png';
+import mcReceitas from '../assets/MC-RECEITAS.png';
+import mcIngredientes from '../assets/MC-INGREDIENTES.png';
+import mcGerarOrcamento from '../assets/MC-GERARORCAMENTO.png';
+import mcClientes from '../assets/MC-CLIENTES.png';
+import mcFluxo from '../assets/MC-FLUXO.png';
+import mcRelatorio from '../assets/MC-RELATORIO.png';
+import casalBakery from '../assets/casal-bakery.jpg';
+import apontando from '../assets/apontando.png';
 
 const title = 'Minha Confeitaria App — Organize, Precifique e Lucre';
 const description = 'Sistema completo para confeiteiras: precifique receitas, gerencie pedidos, clientes e fluxo de caixa. Pare de perder dinheiro. Teste grátis.';
@@ -30,8 +43,8 @@ const description = 'Sistema completo para confeiteiras: precifique receitas, ge
           </div>
         </div>
         <div class="hero-visual">
-          <div class="app-frame"><img src="/images/MC-DASHBOARD.png" alt="Dashboard Minha Confeitaria"></div>
-          <img src="/images/MC-Love.png" alt="" class="hero-char" aria-hidden="true">
+          <div class="app-frame"><Image src={mcDashboard} alt="Dashboard Minha Confeitaria" width={1080} format="webp" loading="eager" /></div>
+          <Image src={mcLove} alt="" class="hero-char" aria-hidden="true" width={400} format="webp" />
         </div>
       </div>
     </div>
@@ -97,8 +110,8 @@ const description = 'Sistema completo para confeiteiras: precifique receitas, ge
           <a href="https://app.minhaconfeitaria.com/register" class="btn btn-grad btn-lg">Começar agora, é grátis →</a>
         </div>
         <div class="sol-img reveal">
-          <img src="/images/MC-MEUSPEDIDOS.png" alt="Meus Pedidos">
-          <img src="/images/Mc-Supresa.png" alt="" class="sol-char" aria-hidden="true">
+          <Image src={mcMeusPedidos} alt="Meus Pedidos" width={1080} format="webp" />
+          <Image src={mcSurpresa} alt="" class="sol-char" aria-hidden="true" width={380} format="webp" />
         </div>
       </div>
     </div>
@@ -125,31 +138,31 @@ const description = 'Sistema completo para confeiteiras: precifique receitas, ge
         <div id="fpanels">
           <div class="fpanel on" id="p-receitas">
             <div><div class="fbadge free">✓ Grátis</div><h3>Registre todas as suas receitas</h3><p>Tenha todas as suas receitas organizadas na palma da mão. Vincule ingredientes, defina o rendimento e o sistema calcula automaticamente o custo por unidade e a sua margem de lucro.</p><a href="#pricing" class="btn btn-grad">Começar grátis →</a></div>
-            <div class="fshot"><img src="/images/MC-RECEITAS.png" alt="Receitas"></div>
+            <div class="fshot"><Image src={mcReceitas} alt="Receitas" width={1080} format="webp" /></div>
           </div>
           <div class="fpanel" id="p-ingredientes">
             <div><div class="fbadge free">✓ Grátis</div><h3>Ingredientes com custo inteligente</h3><p>Ao alterar o preço de um ingrediente, os custos de <strong>todas as suas receitas</strong> são ajustados automaticamente — revelando o lucro efetivo de cada pedido. Chega de recalcular tudo na mão.</p><a href="#pricing" class="btn btn-grad">Começar grátis →</a></div>
-            <div class="fshot"><img src="/images/MC-INGREDIENTES.png" alt="Ingredientes"></div>
+            <div class="fshot"><Image src={mcIngredientes} alt="Ingredientes" width={1080} format="webp" /></div>
           </div>
           <div class="fpanel" id="p-orcamentos">
             <div><div class="fbadge free">✓ Grátis</div><h3>Orçamento profissional em segundos</h3><p>Selecione as receitas e quantidades — o orçamento em PDF profissional está pronto para enviar direto pelo WhatsApp do cliente. Do sistema para o cliente em menos de 1 minuto.</p><a href="#pricing" class="btn btn-grad">Começar grátis →</a></div>
-            <div class="fshot"><img src="/images/MC-GERARORCAMENTO.png" alt="Orçamentos"></div>
+            <div class="fshot"><Image src={mcGerarOrcamento} alt="Orçamentos" width={1080} format="webp" /></div>
           </div>
           <div class="fpanel" id="p-pedidos">
             <div><div class="fbadge pro">★ PRO</div><h3>Controle total dos pedidos</h3><p>Status, datas de entrega, pagamentos parciais — tudo em um só lugar. Organização é tão importante quanto a qualidade do seu produto: um pedido esquecido pode destruir uma reputação.</p><a href="#pricing" class="btn btn-grad">Ver plano PRO →</a></div>
-            <div class="fshot"><img src="/images/MC-MEUSPEDIDOS.png" alt="Pedidos"></div>
+            <div class="fshot"><Image src={mcMeusPedidos} alt="Pedidos" width={1080} format="webp" /></div>
           </div>
           <div class="fpanel" id="p-clientes">
             <div><div class="fbadge pro">★ PRO</div><h3>Todos os seus clientes a um clique</h3><p>Cadastro completo com histórico de todos os pedidos. Saiba quem compra mais, com qual frequência e qual o ticket médio de cada cliente.</p><a href="#pricing" class="btn btn-grad">Ver plano PRO →</a></div>
-            <div class="fshot"><img src="/images/MC-CLIENTES.png" alt="Clientes"></div>
+            <div class="fshot"><Image src={mcClientes} alt="Clientes" width={1080} format="webp" /></div>
           </div>
           <div class="fpanel" id="p-fluxo">
             <div><div class="fbadge pro">★ PRO</div><h3>Fluxo de Caixa automático</h3><p>Ao finalizar um pedido o sistema gera automaticamente o movimento no seu fluxo de caixa. O dinheiro do negócio, organizado sem esforço extra.</p><a href="#pricing" class="btn btn-grad">Ver plano PRO →</a></div>
-            <div class="fshot"><img src="/images/MC-FLUXO.png" alt="Fluxo de Caixa"></div>
+            <div class="fshot"><Image src={mcFluxo} alt="Fluxo de Caixa" width={1080} format="webp" /></div>
           </div>
           <div class="fpanel" id="p-relatorios">
             <div><div class="fbadge pro">★ PRO</div><h3>Relatórios para crescer</h3><p>Planejar utilizando dados reais é muito mais produtivo. Veja histórico de pedidos, custos, lucro e tendências. Tome decisões com base em números, não em intuição.</p><a href="#pricing" class="btn btn-grad">Ver plano PRO →</a></div>
-            <div class="fshot"><img src="/images/MC-RELATORIO.png" alt="Relatórios"></div>
+            <div class="fshot"><Image src={mcRelatorio} alt="Relatórios" width={1080} format="webp" /></div>
           </div>
         </div>
       </div>
@@ -160,7 +173,7 @@ const description = 'Sistema completo para confeiteiras: precifique receitas, ge
   <section class="section s-tint" id="whom">
     <div class="container">
       <div class="whom-grid">
-        <div class="whom-photo reveal"><img src="/images/casal-bakery.jpg" alt="Confeiteiros felizes em sua loja"></div>
+        <div class="whom-photo reveal"><Image src={casalBakery} alt="Confeiteiros felizes em sua loja" width={800} height={440} format="webp" /></div>
         <div class="reveal">
           <div class="tag" style="background:#FCE7F3;color:var(--pink)">Para quem é?</div>
           <h2>Para quem produz com paixão<br>e quer lucrar de verdade.</h2>
@@ -318,7 +331,7 @@ const description = 'Sistema completo para confeiteiras: precifique receitas, ge
             <div class="trust-it"><span class="trust-dot"></span>Garantia de 7 dias</div>
           </div>
         </div>
-        <img src="/images/apontando.png" alt="" class="cta-char" style="margin-bottom: -115px; transform: scaleX(-1);" aria-hidden="true">
+        <Image src={apontando} alt="" class="cta-char" width={520} format="webp" style="margin-bottom: -115px; transform: scaleX(-1);" aria-hidden="true" />
       </div>
     </div>
   </section>
@@ -448,6 +461,11 @@ const description = 'Sistema completo para confeiteiras: precifique receitas, ge
   transform: perspective(900px) rotateY(-6deg) rotateX(2.5deg);
 }
 
+.app-frame img {
+  width: 100%;
+  display: block;
+}
+
 @keyframes floatApp {
   0%, 100% { transform: perspective(900px) rotateY(-6deg) rotateX(2.5deg) translateY(0); }
   50% { transform: perspective(900px) rotateY(-6deg) rotateX(2.5deg) translateY(-12px); }
@@ -458,6 +476,7 @@ const description = 'Sistema completo para confeiteiras: precifique receitas, ge
   bottom: -18px;
   right: -24px;
   width: 200px;
+  height: auto;
   z-index: 3;
   animation: floatC 5s ease-in-out infinite;
 }
@@ -579,11 +598,16 @@ const description = 'Sistema completo para confeiteiras: precifique receitas, ge
   width: 100%;
 }
 
+.sol-img img {
+  display: block;
+}
+
 .sol-char {
   position: absolute;
   bottom: -10px;
   right: -36px;
   width: 190px;
+  height: auto;
 }
 
 /* FEATURES */
@@ -698,6 +722,7 @@ const description = 'Sistema completo para confeiteiras: precifique receitas, ge
 
 .fshot img {
   width: 100%;
+  height: auto;
   display: block;
 }
 
@@ -719,6 +744,7 @@ const description = 'Sistema completo para confeiteiras: precifique receitas, ge
   width: 100%;
   height: 440px;
   object-fit: cover;
+  display: block;
 }
 
 .whom-list {
@@ -1114,6 +1140,7 @@ const description = 'Sistema completo para confeiteiras: precifique receitas, ge
 
 .cta-char {
   width: 260px;
+  height: auto;
 }
 
 /* REVEAL */

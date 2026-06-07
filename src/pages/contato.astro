@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import casalBakery from '../assets/casal-bakery.jpg';
 ---
 
 <BaseLayout title="Contato — Minha Confeitaria App" description="Fale com a equipe do Minha Confeitaria App. Tire dúvidas, peça suporte ou conheça nossos planos para a sua confeitaria." canonical="/contato">
@@ -88,7 +90,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </div>
       <div class="form-image">
-        <img src="/images/casal-bakery.jpg" alt="Equipe Minha Confeitaria">
+        <Image src={casalBakery} alt="Equipe Minha Confeitaria" width={800} height={480} format="webp" />
         <div class="form-image-badge">
           <div class="fib-dot"></div>
           <div class="fib-text">
@@ -176,7 +178,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .contact-card p { font-size: 0.9rem; margin-bottom: 24px; max-width: 240px; margin-left: auto; margin-right: auto; }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
 .form-image { border-radius: 20px; overflow: hidden; box-shadow: var(--shadowlg); position: relative; }
-.form-image img { width: 100%; height: 480px; object-fit: cover; object-position: center top; }
+.form-image img { width: 100%; height: 480px; object-fit: cover; object-position: center top; display: block; }
 .form-image-badge { position: absolute; bottom: 24px; left: 24px; right: 24px; background: rgba(20, 7, 0, 0.72); backdrop-filter: blur(12px); border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; gap: 14px; border: 1px solid rgba(255, 255, 255, 0.1); }
 .fib-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); flex-shrink: 0; box-shadow: 0 0 8px rgba(22, 163, 74, 0.6); }
 .fib-text strong { display: block; font-size: 0.9rem; font-weight: 700; color: #fff; }

@@ -1,5 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import mcReceitas from '../assets/MC-RECEITAS.png';
+import mcIngredientes from '../assets/MC-INGREDIENTES.png';
+import mcGerarOrcamento from '../assets/MC-GERARORCAMENTO.png';
+import mcMeusPedidos from '../assets/MC-MEUSPEDIDOS.png';
+import mcClientes from '../assets/MC-CLIENTES.png';
+import mcFluxo from '../assets/MC-FLUXO.png';
+import mcRelatorio from '../assets/MC-RELATORIO.png';
 
 const title = 'Funcionalidades — Minha Confeitaria App';
 const description = 'Conheça todos os recursos do Minha Confeitaria: ingredientes, receitas, orçamentos, pedidos, clientes, relatórios e fluxo de caixa em um só app.';
@@ -52,7 +60,7 @@ const description = 'Conheça todos os recursos do Minha Confeitaria: ingredient
       <a href="https://app.minhaconfeitaria.com/register" class="btn btn-grad">Começar grátis →</a>
     </div>
     <div class="feat-img">
-      <div class="feat-img-wrap"><img src="/images/MC-RECEITAS.png" alt="Tela de Receitas"></div>
+      <div class="feat-img-wrap"><Image src={mcReceitas} alt="Tela de Receitas" width={1080} format="webp" /></div>
     </div>
   </div>
 </section>
@@ -61,7 +69,7 @@ const description = 'Conheça todos os recursos do Minha Confeitaria: ingredient
 <section class="feat-section" id="ingredientes">
   <div class="feat-row flip reveal">
     <div class="feat-img">
-      <div class="feat-img-wrap"><img src="/images/MC-INGREDIENTES.png" alt="Tela de Ingredientes"></div>
+      <div class="feat-img-wrap"><Image src={mcIngredientes} alt="Tela de Ingredientes" width={1080} format="webp" /></div>
     </div>
     <div class="feat-txt">
       <div class="feat-badge fb-free">✓ Disponível no Plano Grátis</div>
@@ -94,7 +102,7 @@ const description = 'Conheça todos os recursos do Minha Confeitaria: ingredient
       <a href="https://app.minhaconfeitaria.com/register" class="btn btn-grad">Começar grátis →</a>
     </div>
     <div class="feat-img">
-      <div class="feat-img-wrap"><img src="/images/MC-GERARORCAMENTO.png" alt="Tela de Orçamento"></div>
+      <div class="feat-img-wrap"><Image src={mcGerarOrcamento} alt="Tela de Orçamento" width={1080} format="webp" /></div>
     </div>
   </div>
 </section>
@@ -112,7 +120,7 @@ const description = 'Conheça todos os recursos do Minha Confeitaria: ingredient
 <section class="feat-section" id="pedidos">
   <div class="feat-row flip reveal">
     <div class="feat-img">
-      <div class="feat-img-wrap"><img src="/images/MC-MEUSPEDIDOS.png" alt="Tela de Pedidos"></div>
+      <div class="feat-img-wrap"><Image src={mcMeusPedidos} alt="Tela de Pedidos" width={1080} format="webp" /></div>
     </div>
     <div class="feat-txt">
       <div class="feat-badge fb-pro">★ Exclusivo PRO</div>
@@ -146,7 +154,7 @@ const description = 'Conheça todos os recursos do Minha Confeitaria: ingredient
       <a href="/precos" class="btn btn-grad">Ver plano PRO →</a>
     </div>
     <div class="feat-img">
-      <div class="feat-img-wrap"><img src="/images/MC-CLIENTES.png" alt="Tela de Clientes"></div>
+      <div class="feat-img-wrap"><Image src={mcClientes} alt="Tela de Clientes" width={1080} format="webp" /></div>
     </div>
   </div>
 </section>
@@ -155,7 +163,7 @@ const description = 'Conheça todos os recursos do Minha Confeitaria: ingredient
 <section class="feat-section" id="fluxo">
   <div class="feat-row flip reveal">
     <div class="feat-img">
-      <div class="feat-img-wrap"><img src="/images/MC-FLUXO.png" alt="Fluxo de Caixa"></div>
+      <div class="feat-img-wrap"><Image src={mcFluxo} alt="Fluxo de Caixa" width={1080} format="webp" /></div>
     </div>
     <div class="feat-txt">
       <div class="feat-badge fb-pro">★ Exclusivo PRO</div>
@@ -188,7 +196,7 @@ const description = 'Conheça todos os recursos do Minha Confeitaria: ingredient
       <a href="/precos" class="btn btn-grad">Ver plano PRO →</a>
     </div>
     <div class="feat-img">
-      <div class="feat-img-wrap"><img src="/images/MC-RELATORIO.png" alt="Relatórios"></div>
+      <div class="feat-img-wrap"><Image src={mcRelatorio} alt="Relatórios" width={1080} format="webp" /></div>
     </div>
   </div>
 </section>
@@ -409,6 +417,7 @@ const description = 'Conheça todos os recursos do Minha Confeitaria: ingredient
 
 .feat-img-wrap img {
   width: 100%;
+  height: auto;
   display: block;
 }
 
