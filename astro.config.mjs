@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { buildSitemapEnhancer } from 'web-kit/sitemap';
+import sitemapImages from 'web-kit/sitemap-images';
 
 const enhancer = buildSitemapEnhancer({
   site: 'https://minhaconfeitaria.com.br',
@@ -24,5 +25,6 @@ export default defineConfig({
       serialize: enhancer.serialize,
       xslURL: enhancer.xslURL,
     }),
+    sitemapImages(),
   ],
 });
