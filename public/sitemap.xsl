@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:s="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  exclude-result-prefixes="s image xhtml">
 
   <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 
@@ -78,7 +80,7 @@
 
   <xsl:template match="/">
     <xsl:choose>
-      <xsl:when test="//sitemapindex">
+      <xsl:when test="s:sitemapindex">
         <xsl:call-template name="sitemapindex"/>
       </xsl:when>
       <xsl:otherwise>
@@ -104,7 +106,7 @@
             <div class="host">Arquivo de índice · gerado automaticamente</div>
           </div>
           <div class="stats">
-            <div class="pill"><b><xsl:value-of select="count(//sitemap)"/></b><span>sub-sitemaps</span></div>
+            <div class="pill"><b><xsl:value-of select="count(s:sitemapindex/s:sitemap)"/></b><span>sub-sitemaps</span></div>
           </div>
           <table>
             <thead>
@@ -114,10 +116,10 @@
               </tr>
             </thead>
             <tbody>
-              <xsl:for-each select="//sitemap">
+              <xsl:for-each select="s:sitemapindex/s:sitemap">
                 <tr>
-                  <td><a href="{loc}"><xsl:value-of select="loc"/></a></td>
-                  <td class="num"><xsl:value-of select="substring(lastmod, 1, 10)"/></td>
+                  <td><a href="{s:loc}"><xsl:value-of select="s:loc"/></a></td>
+                  <td class="num"><xsl:value-of select="substring(s:lastmod, 1, 10)"/></td>
                 </tr>
               </xsl:for-each>
             </tbody>
@@ -147,8 +149,8 @@
             <div class="host">Lista completa de páginas · gerado automaticamente</div>
           </div>
           <div class="stats">
-            <div class="pill"><b><xsl:value-of select="count(//url)"/></b><span>URLs</span></div>
-            <div class="pill"><b><xsl:value-of select="count(//url[image:image])"/></b><span>com imagens</span></div>
+            <div class="pill"><b><xsl:value-of select="count(s:urlset/s:url)"/></b><span>URLs</span></div>
+            <div class="pill"><b><xsl:value-of select="count(s:urlset/s:url[image:image])"/></b><span>com imagens</span></div>
           </div>
           <table>
             <thead>
@@ -159,21 +161,21 @@
               </tr>
             </thead>
             <tbody>
-              <xsl:for-each select="//url">
+              <xsl:for-each select="s:urlset/s:url">
                 <tr>
-                  <td><a href="{loc}"><xsl:value-of select="loc"/></a></td>
+                  <td><a href="{s:loc}"><xsl:value-of select="s:loc"/></a></td>
                   <td style="text-align:center;">
                     <xsl:if test="image:image">
                       <span class="imgbadge"><xsl:value-of select="count(image:image)"/></span>
                     </xsl:if>
                   </td>
-                  <td class="num"><xsl:value-of select="substring(lastmod, 1, 10)"/></td>
+                  <td class="num"><xsl:value-of select="substring(s:lastmod, 1, 10)"/></td>
                 </tr>
               </xsl:for-each>
             </tbody>
           </table>
           <div class="footer">
-            <xsl:value-of select="count(//url)"/> URLs neste sitemap. Destinado aos buscadores — padrão <a href="https://www.sitemaps.org/protocol.html">sitemaps.org</a>.
+            <xsl:value-of select="count(s:urlset/s:url)"/> URLs neste sitemap. Destinado aos buscadores — padrão <a href="https://www.sitemaps.org/protocol.html">sitemaps.org</a>.
           </div>
         </div>
       </body>
