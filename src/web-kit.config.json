@@ -5,13 +5,24 @@
     "consentWebhookUrl": "",
     "texts": {
       "privacyPolicyUrl": "/politica-de-privacidade"
-    }
+    },
+    "showReject": false,
+    "showGranular": false,
+    "showFloatButton": true,
+    "appearance": {
+      "position": "bottom-bar",
+      "colorScheme": "auto",
+      "stylePreset": "card"
+    },
+    "acceptOnScroll": false,
+    "acceptOnScrollPx": 100
   },
   "pixel": {
     "enabled": false,
     "pixelId": "",
     "capiWebhookUrl": "",
-    "autoPageView": true
+    "autoPageView": true,
+    "testEventCode": ""
   },
   "ads": {
     "enabled": false,
@@ -22,6 +33,47 @@
     }
   },
   "utm": {
-    "enabled": true
-  }
+    "enabled": true,
+    "ttlDays": 90,
+    "attribution": "last",
+    "decorateExternal": false,
+    "decorateInternal": false
+  },
+  "tracking": {
+    "ga4Id": "",
+    "gtmId": "",
+    "headCode": "",
+    "headCategory": "analytics",
+    "bodyCode": "",
+    "bodyCategory": "analytics"
+  },
+  "seo": {
+    "siteName": "",
+    "titleTemplate": "",
+    "defaultTitle": "",
+    "defaultDescription": "",
+    "defaultImage": "",
+    "locale": "pt_BR",
+    "twitterSite": "",
+    "twitterCreator": "",
+    "twitterCard": "summary_large_image",
+    "themeColor": "",
+    "robots": {
+      "maxImagePreview": "large",
+      "maxSnippet": -1,
+      "maxVideoPreview": -1
+    },
+    "structuredData": true
+  },
+  "adLoading": {
+    "enabled": true,
+    "maxWaitMs": 1500,
+    "minShowMs": 300,
+    "adSelector": "ins.adsbygoogle, [joinadscode]",
+    "color": "#ff8c2e",
+    "bg": "#ffffff80",
+    "blur": 10,
+    "text": ""
+  },
+  "pageOverrides": {}
 }

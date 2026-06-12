@@ -6,6 +6,8 @@ import LgpdBanner from 'web-kit/components/LgpdBanner.astro';
 import MetaPixel from 'web-kit/components/MetaPixel.astro';
 import Tracking from 'web-kit/components/Tracking.astro';
 import UtmForwarder from 'web-kit/components/UtmForwarder.astro';
+import AdLoadingGate from 'web-kit/components/AdLoadingGate.astro';
+import { resolvePageConfig } from 'web-kit/page-config';
 import { config } from '../web-kit.config';
 import '../styles/global.css';
 
@@ -14,21 +16,24 @@ interface Props {
   description: string;
   canonical: string;
   image?: string;
+  noindex?: boolean;
 }
 
-const { title, description, canonical, image } = Astro.props;
+const { title, description, canonical, image, noindex } = Astro.props;
+const page = resolvePageConfig(config, Astro.url.pathname);
 ---
 
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <SEO title={title} description={description} canonical={canonical} image={image} />
+  <SEO title={title} description={description} canonical={canonical} image={image} noindex={noindex} config={config.seo} />
 </head>
 <body>
   <Nav />
   <slot />
   <Footer />
-  <LgpdBanner lgpd={config.lgpd} siteId={config.siteId} />
+  {page.showCookieBanner && <LgpdBanner lgpd={config.lgpd} siteId={config.siteId} />}
+  {page.adLoading && <AdLoadingGate config={page.adLoading} />}
   {config.pixel?.enabled && <MetaPixel pixel={config.pixel} siteId={config.siteId} />}
   {config.tracking && <Tracking tracking={config.tracking} siteId={config.siteId} />}
   {config.utm && <UtmForwarder utm={config.utm} />}

@@ -1,36 +1,29 @@
 ---
+/**
+ * Componente: SEO (minhaconfeitaria)
+ *
+ * Wrapper local que mantém charset/viewport/favicon e preload de fonte,
+ * e delega o SEO em si (title/description/canonical/og/twitter) para
+ * o componente web-kit Seo.astro.
+ */
+
+import Seo from 'web-kit/components/Seo.astro';
+import type { SeoConfig } from 'web-kit/config';
+
 interface Props {
   title: string;
   description: string;
   canonical: string;
   image?: string;
+  noindex?: boolean;
+  config?: SeoConfig;
 }
 
-const { title, description, canonical, image } = Astro.props;
-const site = new URL(Astro.site || 'https://minhaconfeitaria.com.br');
-const canonicalUrl = new URL(canonical, site).href;
-const ogImage = image ? new URL(image, site).href : new URL('/og-image.png', site).href;
+const { title, description, canonical, image, noindex, config } = Astro.props;
 ---
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content={description}>
-<link rel="canonical" href={canonicalUrl}>
-
-<!-- Open Graph -->
-<meta property="og:title" content={title}>
-<meta property="og:description" content={description}>
-<meta property="og:url" content={canonicalUrl}>
-<meta property="og:image" content={ogImage}>
-<meta property="og:type" content="website">
-<meta property="og:locale" content="pt_BR">
-<meta property="og:site_name" content="Minha Confeitaria">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content={title}>
-<meta name="twitter:description" content={description}>
-<meta name="twitter:image" content={ogImage}>
 
 <!-- Favicon -->
 <link rel="icon" href="/images/logo-mini.png">
@@ -38,4 +31,12 @@ const ogImage = image ? new URL(image, site).href : new URL('/og-image.png', sit
 <!-- Fonts (self-hosted) — preload da fonte do corpo p/ tirar do caminho crítico -->
 <link rel="preload" href="/fonts/plus-jakarta-sans-var.woff2" as="font" type="font/woff2" crossorigin>
 
-<title>{title}</title>
+<!-- SEO compartilhado (web-kit) -->
+<Seo
+  title={title}
+  description={description}
+  canonical={canonical}
+  image={image}
+  noindex={noindex}
+  config={config}
+/>

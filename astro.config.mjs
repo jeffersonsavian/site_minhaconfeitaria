@@ -1,6 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { buildSitemapEnhancer } from 'web-kit/sitemap';
+
+const enhancer = buildSitemapEnhancer({
+  site: 'https://minhaconfeitaria.com.br',
+  collections: [],
+  pagesDir: 'src/pages',
+});
 
 // https://astro.build
 export default defineConfig({
@@ -12,6 +19,10 @@ export default defineConfig({
   },
   integrations: [
     // Pretty links /go/* são noindex e não entram no sitemap.
-    sitemap({ filter: (page) => !page.includes('/go/') }),
+    sitemap({
+      filter: (page) => !page.includes('/go/'),
+      serialize: enhancer.serialize,
+      xslURL: enhancer.xslURL,
+    }),
   ],
 });
