@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Página não encontrada — Minha Confeitaria App"
+  description="A página que você procura não existe ou foi movida."
+  canonical="/404"
+  noindex={true}
+>
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="container" style="position:relative;z-index:2;text-align:center">
+    <div class="hero-eyebrow">Erro 404</div>
+    <h1 class="hero-title">Essa página <em>não existe</em></h1>
+    <p class="hero-sub">O endereço pode ter mudado ou a página foi removida. Mas tem muita coisa boa esperando por você por aqui.</p>
+    <div class="nf-actions">
+      <a href="/" class="btn btn-grad">Voltar para o início</a>
+      <a href="/funcionalidades" class="btn btn-ghost">Ver funcionalidades</a>
+    </div>
+    <div class="nf-links">
+      <span>Talvez você procure:</span>
+      <a href="/precos">Preços</a>
+      <a href="/funcionalidades">Funcionalidades</a>
+      <a href="/contato">Contato</a>
+    </div>
+  </div>
+</section>
+</BaseLayout>
+
+<style>
+#hero { background: var(--dark); position: relative; overflow: hidden; padding: 170px 0 130px; text-align: center; min-height: 70vh; display: flex; align-items: center; }
+.hero-glow { position: absolute; top: -10%; right: 10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(124, 58, 237, 0.26) 0%, transparent 68%); pointer-events: none; }
+.hero-glow2 { position: absolute; bottom: -10%; left: 5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(233, 30, 140, 0.16) 0%, transparent 68%); pointer-events: none; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(245, 197, 0, 0.14); border: 1px solid rgba(245, 197, 0, 0.28); padding: 6px 16px; border-radius: 50px; font-size: 0.82rem; font-weight: 700; color: var(--yellow); margin-bottom: 22px; }
+.hero-title { color: #fff; margin-bottom: 18px; position: relative; z-index: 2; }
+.hero-title em { color: transparent; background: var(--grad); -webkit-background-clip: text; background-clip: text; font-style: normal; }
+.hero-sub { color: rgba(255, 255, 255, 0.62); font-size: 1.1rem; max-width: 520px; margin: 0 auto 36px; position: relative; z-index: 2; }
+.nf-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 34px; }
+.btn-ghost { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); color: #fff; }
+.btn-ghost:hover { background: rgba(255,255,255,.16); }
+.nf-links { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; align-items: center; font-size: 0.9rem; }
+.nf-links span { color: rgba(255,255,255,.5); }
+.nf-links a { color: #fff; font-weight: 600; border-bottom: 1px solid transparent; transition: border-color .2s; }
+.nf-links a:hover { border-color: var(--yellow); }
+</style>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav?.classList.toggle('sc', scrollY > 40));
+</script>

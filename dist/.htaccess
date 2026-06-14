@@ -1,0 +1,32 @@
+# ==========================================================================
+#  .htaccess — Minha Confeitaria (LiteSpeed / ServerAvatar, site estático)
+#  Lido pelo LiteSpeed igual ao Apache. Vai para a raiz do site (webroot).
+# ==========================================================================
+
+# --- Página de erro 404 própria -------------------------------------------
+# Qualquer URL inexistente exibe /404.html mantendo o status 404 (correto
+# para SEO — não vira "soft 404"). A 404.html é gerada pelo Astro a partir
+# de src/pages/404.astro.
+ErrorDocument 404 /404.html
+
+
+# --- Redirects 301 (URLs antigas -> páginas novas) ------------------------
+# Use para URLs que MUDARAM ou foram removidas, evitando que caiam no 404 e
+# preservando o SEO. Formato:  Redirect 301 /caminho-antigo /caminho-novo
+# Adicione uma linha por URL. Exemplos (comentados — descomente/edite):
+#
+#   Redirect 301 /pagina-antiga/        /precos
+#   Redirect 301 /blog/post-velho/      /funcionalidades
+#   Redirect 301 /promo                 /precos
+#
+# (Deixe esta seção vazia se ainda não há redirects a fazer.)
+
+
+# --- Consolidação de host (opcional, recomendado pós-migração) ------------
+# Força https + sem www. Descomente se o domínio responde em www/http.
+# <IfModule mod_rewrite.c>
+#   RewriteEngine On
+#   RewriteCond %{HTTPS} off [OR]
+#   RewriteCond %{HTTP_HOST} ^www\. [NC]
+#   RewriteRule ^ https://minhaconfeitaria.com.br%{REQUEST_URI} [L,R=301]
+# </IfModule>
