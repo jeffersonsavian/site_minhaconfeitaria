@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { buildSitemapEnhancer } from 'web-kit/sitemap';
 import sitemapImages from 'web-kit/sitemap-images';
+import sitemapUnderscore from 'web-kit/sitemap-underscore';
 
 const enhancer = buildSitemapEnhancer({
   site: 'https://minhaconfeitaria.com.br',
@@ -26,5 +27,7 @@ export default defineConfig({
       xslURL: enhancer.xslURL,
     }),
     sitemapImages(),
+    // Renomeia sitemap-index.xml -> sitemap_index.xml (padrão WordPress/Yoast).
+    sitemapUnderscore(),
   ],
 });
